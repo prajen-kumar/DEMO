@@ -8,7 +8,7 @@
   </style>
 </head>
 <body bgcolor="red" text="white"><br><br<br>
-  <div class="diy">
+  
    <center>
    <font face="arial" size=10%>welcome to my web page</font>
   <h1>Hello there, I'm ROOBAN</h1>
@@ -29,42 +29,26 @@
   </ul></center>
   <center>
     <figure>
-  <img src="Rrob.jpg" width=500px height=100% alt =image>
+  <div class="diy"><img src="Rrob.jpg" width=500px height=100% alt =image></div>
      </figure><br> <br> <br>
     <font face="stencil" text="white" size=5%>MY GENDER</font> <br>
     <input type="radio" name="S">Male<Br>
     <input type="radio" name="S">Female<Br>
     <input type="radio" name="S" checked>trans<Br>
   </center>
-</div>
+
 </body>
     </html>
 
 <style>
   .diy{
-    height:1000%;
-    width:1000px;
-    animation:fo 3s infinite alternate;
+    width:50px;
+    height:70%;
+    transitision: transform 2s ease;
   }
-  @keyframes fo{
-  0%{
-    background-color: violet;
+  .diy:hover{
+    transform:transplateX(30px);
   }
-  20%{
-    background-color: indigo;
-  }
-  40%{
-    background-color:blue;
-  }
-  60%{
-    background-color: green;
-  }
-  80%{
-    background-color: yellow;
-  }
-  100%{
-    background-color: orange;
-  }}
 </style>
 <script>
   var pass = prompt("Enter the password:");
