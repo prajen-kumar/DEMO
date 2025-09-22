@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=110">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body style="background-color: rgba(79, 79, 79, 0.614);">
+   <nav id="n" class="navbar navbar-expand-lg navbar-dark bg-light" ><a href="#"  class="navbar-brand"> </a>
+    <a id="hed" href="#" class="navbar-brand">  My  portfolio</a>
+    <button class="navbar-toggler" type="button" id="but" data-bs-toggle="collapse" data-bs-target="#navie" >
+       <span class="navbar-icon" id="but"><i class="bi bi-arrow-bar-left"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navie">
+        <ul class="navbar-nav">
+            <li id="list" class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+            <li id="list" class="nav-item"><a class="nav-link" href="#my skills">My Skills</a></li>
+            <li id="list" class="nav-item"><a class="nav-link" href="#my portfolio">My portfolio</a></li>
+        </ul>
+    </div>
+   </nav>
+
+   <section id="about" class="py-5 text-center">
+    <div id="abbg" class="container">
+        <h3 class="section-title" id="abt">ABOUT ME</h3>
+        <p id="cont" class="section-content">I'm a full stack devoloper.whoes learning Frontend developing.</p>
+    </div>
+   </section>
+<!--Skills-->
+   <section id="sk" id="my skills" class="py-5 text-center">
+<div  class="container">
+     <h3 id="abt" class="section-title">MY SKILLS</h3><br>
+<div class="row">
+    <div class="col-md-3">
+       <h4 class="section-title">Frontend</h4>
+       <i class="bi bi-code-slash"  style="font-size: 40px;"></i>
+       <p class="section-content">HTML 5,CSS,bootstrap</p>
+    </div>
+
+    <div class="col-md-3">
+       <h4 class="section-title">databases</h4>
+       <i class="bi bi-database"  style="font-size: 40px;"></i>
+       <p class="section-content">My SQL ,Mongo DB</p>
+    </div>
+
+    <div class="col-md-3">
+       <h4 class="section-title">Backend</h4>
+       <i class="bi bi-terminal" style="font-size: 40px"></i>
+       <p class="section-content">C ,C++ ,Python ,JAVA</p>
+    </div>
+
+    <div class="col-md-3">
+       <h4 class="section-title">UI/UX Design</h4>
+       <i class="bi bi-palette" style="font-size: 40px;"></i>
+       <p class="section-content">Design user interactive interface</p>
+    </div>
+</div>
+</div>
+</section>
+
+<!--projects-->
+<section id="my portfolio" class="py-5 text-center">
+<div class="container">
+<div class="row">
+<h3 id="abt" class="section-title">MY PORTFOLIO</h3>
+<div class="col-4">
+    <img src="https://placehold.co/200x200" alt="portfoilo1">
+    <p class="section-content">first Project</p>
+</div>
+<div class="col-4">
+    <img src="https://placehold.co/200x200" alt="portfoilo2">
+    <p class="section-content">second  Project</p>
+</div>
+<div class="col-4">
+    <img src="https://placehold.co/200x200" alt="portfoilo3">
+    <p class="section-content">third Project</p>
+</div>   
+</div>
+</div>
+</section>
+
+<section class="py-5 text-center">
+    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Mymod">Say hai</button>
+</section>
+
+<div class="modal fade" id="Mymod" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Contact Me</h4>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form >
+                <div class="mb-3"><input type="text" class="form-control" placeholder="Name" required></div>
+                <div class="mb-3"><input type="email" class="form-control"  placeholder="Email id" ></div>
+                <div class="mb-3"><input type="password" class="form-control" placeholder="password" required></div>
+                <button type="submit" class="btn btn-primary">submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="py-4 text-center">
+    <div class="container">
+      <div class="row">
+        <p class="col-4" class="text-start" class="m-10">&copy; 2025 My Portfolio. All Rights Reserved.</p>
+        <div class="col-4" class="text-center" id="icon"><a class="nav-link" href="https://www.github.com/prajen-kumar" target="new"><i class="bi bi-github">  My github</i></a></div>
+        <div class="col-4" class="text-end" id="icon"><a class="nav-link" href="https://www.linkedin.com/in/mohan-kumar" target="new"> <i class="bi bi-linkedin">  My linkedin</i></a></div>
+        </div>
+</div>
+</footer>
+</body>
+</html>
+<style>
+    #about{
+        color: black;
+    }
+    #hed{
+      
+        font-family:Engravers MT;
+        color: rgb(255, 0, 0);
+    }
+    #hed:hover{
+        color: rgb(255, 255, 255);
+    }
+    #cont{
+        font-family:Franklin Gothic;
+    }
+    nav{
+        background-image:linear-gradient(to right,rgb(0, 52, 65),rgb(0, 0, 0));
+    }
+    .section-title:hover{
+            color: rgb(255, 0, 0);
+    }
+    
+    
+    p{
+        font-family:Times New Roman;
+    }
+    #but{
+        background-color: rgb(255, 0, 0);
+    }
+    #but:hover{
+        background-color: rgb(255, 0, 0);
+    }
+    #abt{
+        font-style:unset;
+        font-family:Lucida Fax;
+        
+    }
+    #sk{
+    
+        
+        background-color: antiquewhite;
+    }
+    footer{
+        color: aliceblue;
+        background-color: black;
+    }
+    #icon{
+        justify-content: end;
+    }
+   
+</style>
