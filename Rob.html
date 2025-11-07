@@ -27,13 +27,12 @@ Point
   <font face=Stencil size="9%">
     POINT_ _BREAK</b> 
 </center>
-   <center>
 <br><br>
      <font face=palatino size=30px color=white>
        <marquee scrollamount=10>
 welcome to my webpage 🏍
      </marquee><br><br>
-   <div class="diy">
+    <div id="main">
      <figure>
       <br>
       <br>
@@ -44,6 +43,8 @@ welcome to my webpage 🏍
 <a target=new alink="red" vlink="green"  href="https://www.instagram.com/point__break____?igsh=MTQ5OHZjeGZnOHh0cA==" >
 <u>Click here👈</u></a></figcaption>
      </figure>
+          <div class="diy">
+          </div>
    </div>
 <br><br><br>
 <br><br><br>
@@ -70,16 +71,18 @@ welcome to my webpage 🏍
   flex-wrap:wrap;
   background-image: linear-gradient(to right,rgb(17, 77, 31),rgb(0, 0, 0),rgb(17, 77, 31))
  }
+ #main{
+  display:flex;
+  align-items: center;
+ }
  .diy{
+  
   max-width:750px;
   height: Auto;
   background-color: white;
-  transition: transform 2s ease-in 2000ms;
+  transition: translate(30px) 1s linear infinite;
  }
- .diy:hover{
-  transform: rotate(180deg);
-  background-color: red;
- }
+ 
  
    </style>
 
