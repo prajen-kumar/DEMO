@@ -58,8 +58,7 @@ figcaption {
 .diy-section {
     max-width: 750px;
     height: 150px;
-    background-color: white;
+    background-color: rgb(17, 77, 31);
     margin: 40px auto;
-    /* Removed transition: translate(...) as 'transition' should be 'transform'
-       and the syntax was incorrect for a running animation. */
+    
 }
