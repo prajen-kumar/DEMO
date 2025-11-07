@@ -53,12 +53,3 @@ figcaption {
     font-family: 'Stencil', sans-serif;
     font-size: 1.2rem;
 }
-
-/* DIY SECTION (for animation/rotation) */
-.diy-section {
-    max-width: 750px;
-    height: 150px;
-    background-color: rgb(17, 77, 31);
-    margin: 40px auto;
-    
-}
