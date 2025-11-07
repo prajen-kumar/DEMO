@@ -31,7 +31,7 @@ welcome to my webpage
      <figure>
       <br>
       <br>
-     <img src="sars.jpg" width=700px height=80% alt =image>
+     <img id="main" src="sars.jpg" max-width=700px height=70% alt =image>
        <figcaption>
        
 <font face="stencil" size="6%" text ="white">follow me on instagram  </font><br>
@@ -55,6 +55,11 @@ welcome to my webpage
 
 
 <style>
+ #main{
+  max-width: 700px; /* Image will shrink to fit its container */
+  height: auto;    /* Maintains the image's aspect ratio */
+}
+ 
   figure {
     height:75%;
     width:820px;
