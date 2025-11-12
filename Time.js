@@ -22,7 +22,7 @@ function date(){
 
 
 
-   let realTime=document.getElementById("innerClock");
+   let realTime=document.getElementById("Time");
 
    if(realTime){
 
