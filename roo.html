@@ -21,7 +21,9 @@
     </header>
    
     <main class="container text-center pt-5">
-        <div id="Time">Loading...</div>
+        <div id="box">
+            <div id="Time">Loading...</div>
+        </div>
         <h1 class="display-3">
             
             YO👋,<br>This is <strong class="text-white-50">POINT__BREAK</strong>
@@ -56,13 +58,15 @@
     #Time{
         font-size:25px;
         color:red;
-        border-style:groove;
-        text-shadow:1px 1px 5px white;
-        border-color:green;
+        
+        text-shadow:1px 1px 2px white;
+        
         animation: blink 1500ms infinite ease;
     }
     @keyframes blink{
         50%{
             opacity:0%;
         }}
+    #box{border-style:groove;
+        border-color:green;}
 </style>
