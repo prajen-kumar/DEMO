@@ -1,0 +1,67 @@
+#head{
+    font-size: 100px;
+    color: rgb(255, 0, 0);
+    text-shadow: 4px 4px 4px rgb(120, 117, 117);
+    font-family:Perpetua Titling MT;
+}
+
+body{
+    background-color: black;
+    /* background-image:linear-gradient(to right, rgb(255, 0, 255),indigo,blue,green,yellow,orange,red);
+    animation: colour 3s infinite ease-in-ouT; */
+    animation-delay: 3ms;
+
+}
+@keyframes colour {
+    0%{
+        background-image:linear-gradient(to right,rgb(255, 0, 255),indigo,blue,green,yellow,orange,red);
+    }
+    15%{
+        background-image:linear-gradient(to right,indigo,blue,green,yellow,orange,red,rgb(255,0,255));
+    }
+    25%{
+     background-image:linear-gradient(to right,blue,green,yellow,orange,red,rgb(255,0,255,indigo));;
+    }
+    35%{
+       background-image:linear-gradient(to right,green,yellow,orange,red,rgb(255,0,255),indigo,blue);
+    }
+    45%{
+        background-image:linear-gradient(to right,yellow,orange,red,rgb(255,0,255),indigo,blue,green);
+    }
+    55%{
+        background-image:linear-gradient(to right,orange,red,rgb(255,0,255),indigo,blue,green,yellow);
+    }
+    65%{
+        background-image:linear-gradient(to right,red,rgb(255,0,255),indigo,blue,green,yellow,orange);
+    }
+
+    100%{
+        background-image:radial-gradient( to right,rgb(255, 0, 255),indigo,blue,green,yellow,orange,red);
+    }
+} 
+
+#clock{
+    color: rgb(0, 255, 255);
+    background-color: black;
+   border-style:ridge;
+   box-shadow: 1px 1px 40px rgb(255, 0, 0);
+    max-width: 450px;
+    height: auto;
+    align-content: center;
+
+}
+#clock:hover{
+        animation: colour 10s infinite ease;
+}
+#innerClock{
+    justify-items: center;
+    font-size:70px;
+    text-overflow: ellipsis;
+    text-shadow: 2px 2px 5px black;
+    color: aqua;
+    opacity: 100%;
+
+}
+#second{
+    color: red;
+}

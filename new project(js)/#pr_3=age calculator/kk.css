@@ -1,0 +1,54 @@
+
+body{
+  background-color: rgb(2, 28, 19);
+  padding-left: 40px;
+  padding: auto;
+  padding-top: 40px;
+}
+ .container{
+  max-width: 800px;
+  height: 300px;
+  box-shadow: 2px 2px 10px rgb(0, 0, 0);
+  align-content: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+
+
+ }
+
+ h1{
+ color: rgb(255, 0, 0);
+ text-shadow: 2px 2px 5px rgba(57, 57, 57, 0.658);
+font-family: Engravers MT;
+ 
+ }
+ label{
+  color: rgb(165, 0, 0);
+  
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: x-large;
+ }
+ #birthday{
+  color:rgb(0, 28, 28);
+  border-radius: 10%;
+  border-color: crimson;
+
+ }
+ button{
+  max-width: 70px;
+  height: auto;
+  background-color: rgb(53, 151, 255);
+  color: aliceblue;
+  font-family: Eras ITC;
+  border-radius: 30%;
+  border-color: rgb(139, 139, 139);
+ }
+ p{
+  font-family: Georgia;
+  font-size:large ;
+ }
+ #result{
+  color: darkblue;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+ }
+ 
