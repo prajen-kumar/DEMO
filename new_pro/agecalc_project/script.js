@@ -1,3 +1,4 @@
+alert('Dear user, if you are using mobile,Please! Zoom out for good experience.');
 const btnEl = document.getElementById("btn");
 const birthdayEl = document.getElementById("birthday");
 const resultEl = document.getElementById("result");
@@ -27,5 +28,6 @@ function getAge(birthdayValue) {
 
   return age;
 }
+
 
 btnEl.addEventListener("click", calculateAge);
