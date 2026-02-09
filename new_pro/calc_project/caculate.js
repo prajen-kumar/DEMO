@@ -1,4 +1,5 @@
- const resultInput = document.getElementById('result');
+alert('Dear user, if you are using mobile.Please! zoom out for good experience');
+const resultInput = document.getElementById('result');
   const buttons = document.querySelectorAll('#but button');
   resultInput.readOnly = true;
 
@@ -27,3 +28,4 @@
       }
     }
   });
+
