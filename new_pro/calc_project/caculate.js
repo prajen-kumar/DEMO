@@ -12,7 +12,8 @@ function show() {
 
     // 3. Add it to the page
     document.body.appendChild(alertBox);
-     
+     document.getElementById('demo').style.display='block';
+    document.getElementByclassName('dynamic-dialogbox').style.display='block';
 }
 setTimeout(show,1000);
 const resultInput = document.getElementById('result');
@@ -44,6 +45,7 @@ const resultInput = document.getElementById('result');
       }
     }
   });
+
 
 
 
