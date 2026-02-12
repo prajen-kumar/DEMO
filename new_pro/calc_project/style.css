@@ -2,6 +2,29 @@ body{
     background-image: linear-gradient(to right,rgb(0, 0, 0),rgb(64, 64, 64),rgb(0,0,0));
 
 }
+.dynamic-dialogbox {
+    position: fixed;
+    right: 20px;       /* Align to the right */
+    bottom: 20px;      /* Stack from the bottom */
+    width: 300px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    
+    margin-top: 20%;
+    margin-left: 40%;
+    position: relative; /* Allows them to stack naturally if placed in a container */
+}
+
+/* Style for the close 'x' */
+.close-btn {
+    float: right;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
 
 #but button{
     background: #f4f4f4;
@@ -59,6 +82,7 @@ h2{
 #but:hover{
     background-color: rgb(13, 10, 58);
 }
+
 
 
 
