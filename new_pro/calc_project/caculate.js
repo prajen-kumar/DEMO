@@ -1,4 +1,4 @@
-function show(title, message) {
+function show() {
     // 1. Create a container for the alert
     const alertBox = document.createElement('div');
     alertBox.className = 'dynamic-dialogbox';
@@ -13,7 +13,6 @@ function show(title, message) {
     // 3. Add it to the page
     document.body.appendChild(alertBox);
      
-    document.getElementsByClassName('dynamic-dialogbox').style.display='block';
 }
 setTimeout(show,1000);
 const resultInput = document.getElementById('result');
@@ -45,5 +44,6 @@ const resultInput = document.getElementById('result');
       }
     }
   });
+
 
 
