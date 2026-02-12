@@ -1,4 +1,21 @@
-alert('Dear user, if you are using mobile.Please! zoom out for good experience');
+function show(title, message) {
+    // 1. Create a container for the alert
+    const alertBox = document.createElement('div');
+    alertBox.className = 'dynamic-dialogbox';
+    
+    // 2. Set the internal HTML (including a close button)
+    alertBox.innerHTML = `
+        <span class="close-btn" onclick="this.parentElement.remove()">x</span>
+        <div class="head">This webpage Says:</div>
+        <div class="body">Dear user,if you are using mobile please zoom out for good experience.</div>
+    `;
+
+    // 3. Add it to the page
+    document.body.appendChild(alertBox);
+     
+    document.getElementsByClassName('dynamic-dialogbox').style.display='block';
+}
+setTimeout(show,1000);
 const resultInput = document.getElementById('result');
   const buttons = document.querySelectorAll('#but button');
   resultInput.readOnly = true;
@@ -28,4 +45,5 @@ const resultInput = document.getElementById('result');
       }
     }
   });
+
 
