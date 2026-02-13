@@ -45,6 +45,21 @@ const resultInput = document.getElementById('result');
       }
     }
   });
+function end(){
+    
+    document.getElementById('outline').style.display='none';
+    document.getElementById('out').style.display='none';
+  }
+  function show(){
+    
+    document.getElementById('outline').style.display='block';
+    document.getElementById('out').style.display='block';
+    document.getElementById('head').innerHTML="<b>WebPage Says:</b>";
+    document.getElementById('body').innerHTML="Dear User,if you are using Mobile.<br>zoom-out for good Experience.";
+
+  }
+  setTimeout(show,20);
+
 
 
 
