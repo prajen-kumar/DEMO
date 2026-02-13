@@ -92,8 +92,8 @@ h2{
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */}
 #out{
     display: none;
-    top: 30%;
-    left: 40%;
+    top: 3%;
+    left: 4%;
     position: fixed;
     border-radius: 2%;
     max-width: 200px;
@@ -106,6 +106,7 @@ h2{
     cursor: pointer;
     float: right;
     color: red;}
+
 
 
 
