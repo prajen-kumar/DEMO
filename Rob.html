@@ -177,7 +177,7 @@
             // Clear the form
             contactForm.reset();
          }, function(error) {
-            alert("Error: Evidence not sent! Please try again later.");
+            alert("Error: Evidence not sent! Please try again later.",error);
             console.log("EmailJS Error:", error);
             submitBtn.innerHTML = '<i class="bi bi-send me-2"></i>Send Message';
             submitBtn.disabled = false;
