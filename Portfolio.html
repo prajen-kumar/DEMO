@@ -125,115 +125,141 @@
 </body>
 </html>
 <style>
-    /* 1. Global Background & Font */
-    body {
+    body{
         background-image: url("texture2.jpg");
         background-size: cover;
-        background-blend-mode: multiply;
-        background-color: #1a1a1a; /* Dark base for detective vibe */
-        color: #f1f3f4; /* Off-white for readability */
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-blend-mode:multiply;
+        background-color:aliceblue;
     }
+    #about{
+        color: black;
+    }
+    #hed{
+        font-size:30px;
+        font-family:Engravers MT;
+        color: rgb(255, 0, 0);
+    }
+    #hed:hover{
+        color: rgb(255, 255, 255);
+    }
+    #cont{
+        color: aliceblue;
+        font-family:Franklin Gothic;
+    }
+    nav{
+        background-image:linear-gradient(to right,rgb(0, 52, 65),rgb(0, 0, 0));
+    }
+    .section-title:hover{
+            color: rgb(255, 0, 0);
+    }
+    #model_head{
+        color:blue;
+    }
+    
+    p{
+        font-family:Times New Roman;
+    }
+    #but{
+        background-color: rgb(255, 0, 0);
+    }
+    #but:hover{
+        background-color: rgb(255, 0, 0);
+    }
+    #abt{
+        color: aliceblue;
+        font-style:unset;
+        font-family:Lucida Fax;
+        
+    }
+    #abt_2{
+        color: rgb(0, 0, 0);
+        font-style:unset;
+        font-family:Lucida Fax;  
+    }
+    #sk{
+        background-image:url("texture.jpg");
+        background-size:cover;
+        background-blend-mode:multiply;
+        color: black;
+        background-color: antiquewhite;
+    }
+    footer{
+        color: aliceblue;
+        background-color: black;
+    }
+    #icon{
+        
+        justify-content: end;
+    }
+    #type{color:red;font_size:larger;}
+   #pr1{
+    max-width: 200px;
+    height: auto;
+   }
+   #pr2{
+    max-width: 220px;
+    height: auto;
+   }
+   #pr3{
+    max-width: 340px;
+    height: 120px;
+   }
 
-    /* 2. Navbar - Using your #10577d */
-    nav {
-        background-image: linear-gradient(to right, #10577d, #000000) !important;
-        border-bottom: 2px solid #ffc107; /* Gold badge accent */
-    }
+   #symbol:hover{
+    text-shadow: 2px 2px 2px red;
+   }
 
-    #hed {
-        font-size: 30px;
-        font-family: 'Engravers MT', serif;
-        color: #ffc107; /* Gold for the brand */
-        text-decoration: none;
-    }
-
-    #hed:hover {
-        color: #ffffff;
-    }
-
-    /* 3. Section Specifics */
-    #about {
-        background-color: rgba(16, 87, 125, 0.8); /* Semi-transparent blue */
-        color: #ffffff;
-        border-radius: 15px;
-        margin: 20px;
-    }
-
-    #cont {
-        color: #ffffff;
-        font-family: 'Franklin Gothic', sans-serif;
-    }
-
-    #sk {
-        background-image: url("texture.jpg");
-        background-size: cover;
-        background-blend-mode: multiply;
-        background-color: #f8f9fa; /* Clean light background for skills */
-        color: #1a1a1a;
-    }
-
-    /* 4. Titles & Typography */
-    .section-title {
-        color: #10577d; /* Primary blue for titles */
-        font-family: 'Lucida Fax', serif;
-        font-weight: bold;
-    }
-
-    .section-title:hover {
-        color: #dc3545; /* Crimson hover */
-    }
-
-    #type {
-        color: #10577d; /* Matching blue for skill types */
-        font-size: larger;
-    }
-
-    /* 5. Buttons & Interactions */
-    .btn-primary {
-        background-color: #10577d;
-        border-color: #10577d;
-    }
-
-    .btn-primary:hover {
-        background-color: #0d4665;
-    }
-
-    #but {
-        background-color: #ffc107; /* Yellow toggle button */
-        border: none;
-    }
-
-    /* 6. Projects & Images */
-    img {
-        border-radius: 10px;
-        transition: transform 0.2s ease-in;
-        border: 3px solid #10577d;
-    }
-
-    img:hover {
-        transform: scale(1.05);
-        box-shadow: 0px 0px 15px #10577d;
-    }
-
-    #link {
-        text-decoration: none;
-        color: #00d4ff;
-        font-size: x-large;
-    }
-
-    /* 7. Footer */
-    footer {
-        color: #adb5bd;
-        background-color: #000000;
-        border-top: 1px solid #10577d;
-    }
-
-    code {
-        color: #ffc107;
-        font-weight: bold;
-    }
-</style>
+   img{
+    border-radius: 10%;
+    transition: transform 0.2s ease-in;
+   }
+   img:hover{
+    transform: scale(1.05);
+    box-shadow: 2px 2px 10px red;
+   }
+  #link{
+    text-decoration: none;
+    color: aqua;
+    font-size: x-large;
+    
+    border-radius: 20%;
+    animation: spin 2s 5s infinite linear;
+  }
+  @keyframes spin{
+      0%{}
+      10%{
+          border-top: 2px solid red;
+      }
+      20%{
+          border-top: 2px solid red;
+      }
+      30%{
+          border-right: 2px solid red;
+      }
+      40%{
+          border-right: 2px solid red;
+      }
+      50%{
+          border-bottom: 2px solid red;
+      }
+      60%{
+          border-bottom: 2px solid red;
+      }
+      70%{
+          border-left: 2px solid red;
+      }
+      80%{
+          border-left: 2px solid red;
+      }
+      90%{
+          border: 2px solid red;
+      }
+      100%{}
+  }
+  code{
+      color: white;
+  }
+            </style>
 
 
 
