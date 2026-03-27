@@ -220,22 +220,43 @@
     text-decoration: none;
     color: aqua;
     font-size: x-large;
-    
+    border:1px solid red;
     border-radius: 20%;
     animation: spin 2s infinite linear;
   }
   @keyframes spin{
       0%{
-          border-right: 2px solid red;
+          border: 2px solid red;
+      }
+      10%{
+          border-top: 2px solid red;
       }
       20%{
+          border-top: 2px solid red;
+      }
+      30%{
+          border-right: 2px solid red;
+      }
+      40%{
+          border-right: 2px solid red;
+      }
+      50%{
           border-bottom: 2px solid red;
       }
       60%{
+          border-bottom: 2px solid red;
+      }
+      70%{
           border-left: 2px solid red;
       }
+      80%{
+          border-left: 2px solid red;
+      }
+      90%{
+          border: 2px solid red;
+      }
       100%{
-          border-top: 2px solid red;
+          border: 2px solid red;
       }
   }
   code{
