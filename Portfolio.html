@@ -220,12 +220,23 @@
     text-decoration: none;
     color: aqua;
     font-size: x-large;
-  }
-  #link:hover{
-    color: aliceblue;
-    background-color: aqua;
-    border: 2px solid red;
+    border-top: 2px solid red;
     border-radius: 20%;
+    animation: spin 2s infinite linear;
+  }
+  @keyframes spin{
+      0%{
+          border-right: 2px solid red;
+      }
+      20%{
+          border-bottom: 2px solid red;
+      }
+      60%{
+          border-left: 2px solid red;
+      }
+      100%{
+          border-top: 2px solid red;
+      }
   }
   code{
       color: white;
