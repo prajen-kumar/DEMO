@@ -41,16 +41,13 @@
             padding: 5px 10px; display: inline-block;
         }
         #back {
-            display: inline-flex; /* Changed from flex to inline-flex */
-            align-items: center;
-            justify-content: center;
+            
             width: 45px;
             height: 45px;
             font-size: 28px;
             color: red;
             transition: 0.3s ease;
             text-decoration: none;
-            /* margin-right is no longer needed because the parent div handles alignment */
         }
 
 
@@ -160,9 +157,15 @@
             </div>
         </div>
     </div>
-        <div class="col-md-4" text-end>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        <div class="col-md-4 text-md-end">
     <a id="back" class="nav-link" href="#"><i class="bi bi-arrow-up-circle"></i></a>
         </div>
+        </div>
+    </div>
     <footer class="py-4 mt-5">
         <div class="container">
             <div class="row align-items-center">
