@@ -41,17 +41,18 @@
             padding: 5px 10px; display: inline-block;
         }
         #back {
-            display: flex;
+            display: inline-flex; /* Changed from flex to inline-flex */
             align-items: center;
             justify-content: center;
-            width: 45px;         /* Slightly larger for a better click area */
+            width: 45px;
             height: 45px;
-            font-size: 28px;     /* This controls the icon size */
-            color: red;          /* Matches your theme */
+            font-size: 28px;
+            color: red;
             transition: 0.3s ease;
             text-decoration: none;
-            margin-right:10px !important;      /* Centers the icon in its column */
-}
+            /* margin-right is no longer needed because the parent div handles alignment */
+        }
+
 
 #back:hover {
     color: white;
