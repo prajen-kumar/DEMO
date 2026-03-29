@@ -40,11 +40,25 @@
             text-decoration: none; color: aqua; font-size: x-large; 
             padding: 5px 10px; display: inline-block;
         }
-        #back{
-            max-width:30px;
-            height:30px;
-            margin-right:10px;
-        }
+        #back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;         /* Slightly larger for a better click area */
+    height: 45px;
+    font-size: 28px;     /* This controls the icon size */
+    color: red;          /* Matches your theme */
+    transition: 0.3s ease;
+    text-decoration: none;
+    margin: 0 auto;      /* Centers the icon in its column */
+}
+
+#back:hover {
+    color: white;
+    transform: scale(1.2);
+    text-shadow: 0 0 10px red;
+}
+
         #model_head { color: blue; }
     </style>
 </head>
