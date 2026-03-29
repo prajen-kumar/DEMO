@@ -3,276 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mohan Kumar | Portfolio</title>
+    <!-- Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #121212; color: aliceblue; font-family: 'Times New Roman', serif; }
+        
+        /* Typography */
+        .section-title { font-family: 'Lucida Fax', sans-serif; color: white; transition: 0.3s; }
+        .section-title:hover { color: #ff0000; }
+        #cont { font-family: 'Franklin Gothic', sans-serif; }
+        #type { color: red; font-size: larger; }
+        
+        /* Sections */
+        #sk { background-color: #000000; }
+        footer { background-color: black; color: aliceblue; }
+        
+        /* Projects & Images */
+        img { border-radius: 10%; transition: transform 0.2s ease-in; max-width: 100%; height: auto; }
+        img:hover { transform: scale(1.05); box-shadow: 2px 2px 10px red; }
+        #pr1 { max-width: 200px; }
+        #pr2 { max-width: 220px; }
+        #pr3 { max-width: 340px; height: 120px; }
+
+        #symbol:hover { text-shadow: 2px 2px 10px red; cursor: pointer; }
+        
+        #link { 
+            text-decoration: none; color: aqua; font-size: x-large; 
+            padding: 5px 10px; display: inline-block;
+        }
+
+        #model_head { color: blue; }
+    </style>
 </head>
-<body >
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a id="title" class="navbar-brand" href="{% url 'about' %}">Portfolio</a>
-            
-            <button id="btn-out" class="navbar-toggler" type="button" 
-                    data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span id="btn-in" class="navbar-toggler-icon"></span>
+            <a class="navbar-brand" href="#">Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- ms-auto pushes links to the right -->
                 <ul class="navbar-nav ms-auto">
-                    <li  class="nav-item">
-                        <a id="itm" class="nav-link" href="">About</a>
-                    </li>
-                    <li  class="nav-item">
-                        <a id="itm" class="nav-link" href="">Projects</a>
-                    </li>
-                    <li  class="nav-item">
-                        <a id="itm" class="nav-link" href="" target="_blank">skills</a>
-                    </li>
-                    <li  class="nav-item">
-                        <a id="itm" class="nav-link" href="" target="_blank">To lear Bootstrap</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#my portfolio">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sk">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.w3schools.com" target="_blank">Learn Bootstrap</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-   <section id="about" class="py-5 text-center">
-    <div id="abbg" class="container">
-        <h3 class="section-title" id="abt">ABOUT ME</h3>
-        <p id="cont" class="section-content">I specialize in turning messy backend data into CSS magic. I believe there is no problem in life that a well-placed display: flex; or a smooth box-shadow can't fix.
-            Warning: I am highly skilled at making things look pretty, 
-            but my database skills are still in 'Beta' mode. I can fetch data like a pro,
-            but if you ask me to architect a massive relational schema, you might see my '404: Knowledge Not Found' face.<br>
-        <code>I am Mohan Kumar persuing BSC CS with AI..</code>
-        </p>
-    </div>
-   </section>
-<!--Skills-->
-   <section id="sk" class="py-5 text-center">
-<div class="container">
-     <h3 id="abt_2" class="section-title">MY SKILLS</h3><br>
-<div class="row">
-    <div  class="col-md-4">
-       <h4 id="type" class="section-title">FRONTEND</h4>
-       <i id="symbol"  class="bi bi-code-slash"  style="font-size: 40px;"></i>
-       <p class="section-content">(HTML,CSS,bootstrap,JS)</p>
-    </div>
+    <!-- About Section -->
+    <section id="about" class="py-5 text-center">
+        <div class="container">
+            <h3 class="section-title mb-4">ABOUT ME</h3>
+            <p id="cont" class="lead">
+                I specialize in turning messy backend data into CSS magic. I believe there is no problem in life that a well-placed <code>display: flex;</code> can't fix.<br>
+                <small class="text-secondary">I am Mohan Kumar pursuing BSC CS with AI.</small>
+            </p>
+        </div>
+    </section>
 
-    <div class="col-md-4">
-       <h4 id="type" class="section-title">DATABASE</h4>
-       <i id="symbol" class="bi bi-database"  style="font-size: 40px;"></i>
-       <p class="section-content">(My SQL ,Mongo DB,Django)</p>
-    </div>
-
-    <div class="col-md-4">
-       <h4 id="type" class="section-title">BACKEND</h4>
-       <i id="symbol" class="bi bi-terminal" style="font-size: 40px"></i>
-       <p class="section-content">(C ,C++ ,Python ,JAVA)</p>
-    </div>
-</div>
-</div>
-</section>
-
-<!--projects-->
-<section id="my portfolio" class="py-5 text-center">
-<div class="container">
-<div class="col">
-<h3 id="abt" class="section-title">MY PROJECTS</h3>
-<div >
-    <img id="pr1" src="new_pro/pop.png" alt="project1"><br>
-    <p  class="section-content"><a id="link" href="new_pro/pop_project/index.html">Visit the Project</a></p>
-    
-    <br>
-</div>
-<br>
-<div >
-    
-    <img id="pr2" src="new_pro\calc.png" alt="project2"><br>
-    <p class="section-content"><a id="link" href="new_pro/calc_project/calculator.html">Visit the Project</a></p>
-    <br>
-</div>
-<br>
-<div >
-    <img id="pr3" src="new_pro\age.png" alt="project3"><br>
-    <p class="section-content"><a id="link" href="new_pro/agecalc_project/agecalc.html">Visit the Project</a></p>
-    <br>
-</div>
-<br>   
-</div>
-</div>
-</section>
-
-<section class="py-5 text-center">
-    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Mymod">Say hai</button>
-</section>
-
-<div class="modal fade" id="Mymod" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 id="model_head">Contact Me</h4>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
+    <!-- Skills Section -->
+    <section id="sk" class="py-5 text-center">
+        <div class="container">
+            <h3 class="section-title mb-5">MY SKILLS</h3>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 id="type">FRONTEND</h4>
+                    <i id="symbol" class="bi bi-code-slash" style="font-size: 40px;"></i>
+                    <p>(HTML, CSS, Bootstrap, JS)</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 id="type">DATABASE</h4>
+                    <i id="symbol" class="bi bi-database" style="font-size: 40px;"></i>
+                    <p>(MySQL, MongoDB, Django)</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 id="type">BACKEND</h4>
+                    <i id="symbol" class="bi bi-terminal" style="font-size: 40px"></i>
+                    <p>(C, C++, Python, Java)</p>
+                </div>
             </div>
-            <div class="modal-body">
-                <form >
-                <div class="mb-3"><input type="text" class="form-control" placeholder="Name" required></div>
-                <div class="mb-3"><input type="email" class="form-control"  placeholder="Email id" ></div>
-                <div class="mb-3"><input type="password" class="form-control" placeholder="password" required></div>
-                <button type="submit" class="btn btn-primary">submit</button>
-                </form>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="my portfolio" class="py-5 text-center">
+        <div class="container">
+            <h3 class="section-title mb-5">MY PROJECTS</h3>
+            <div class="mb-5">
+                <img id="pr1" src="new_pro/pop.png" alt="project1"><br>
+                <a id="link" href="#">Visit the Project</a>
+            </div>
+            <div class="mb-5">
+                <img id="pr2" src="new_pro/calc.png" alt="project2"><br>
+                <a id="link" href="#">Visit the Project</a>
+            </div>
+            <div class="mb-5">
+                <img id="pr3" src="new_pro/age.png" alt="project3"><br>
+                <a id="link" href="#">Visit the Project</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center py-5">
+        <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#Mymod">Say Hi</button>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="Mymod" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h4 id="model_head">Contact Me</h4>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Name" required></div>
+                        <div class="mb-3"><input type="email" class="form-control bg-secondary text-white border-0" placeholder="Email id"></div>
+                        <div class="mb-3"><input type="password" class="form-control bg-secondary text-white border-0" placeholder="Password" required></div>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<footer class="py-4 text-center">
-    <div class="container">
-      <div class="row">
-        <p class="col-4" class="text-start" class="m-10">&copy; 2026 My Portfolio. All Rights Reserved.</p>
-        <div class="col-4" class="text-center" id="icon"><a class="nav-link" href="https://www.github.com/prajen-kumar" target="new"><i class="bi bi-github">  My github</i></a></div>
-        <div class="col-4" class="text-end" id="icon"><a class="nav-link" href="https://www.linkedin.com/in/mohan-kumar-7604b2383?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="new"> <i class="bi bi-linkedin">  My linkedin</i></a></div>
+    <footer class="py-4 mt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <p class="col-md-4 mb-0 text-md-start">&copy; 2026 Mohan Kumar</p>
+                <div class="col-md-4"><a class="nav-link" href="https://www.github.com/prajen-kumar" target="_blank"><i class="bi bi-github"> GitHub</i></a></div>
+                <div class="col-md-4 text-md-end"><a class="nav-link" href="#" target="_blank"><i class="bi bi-linkedin"> LinkedIn</i></a></div>
+            </div>
         </div>
-</div>
-</footer>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<style>
-    body{
-
-        background-color: #121212;
-    }
-    nav{background-image:linear-gradient(black);}
-    #about{
-        color: black;
-    }
-    #hed{
-        font-size:30px;
-        font-family:Engravers MT;
-        color: rgb(255, 0, 0);
-    }
-    #hed:hover{
-        color: rgb(255, 255, 255);
-    }
-    #cont{
-        color: aliceblue;
-        font-family:Franklin Gothic;
-    }
-
-    .section-title:hover{
-            color: rgb(255, 0, 0);
-    }
-    #model_head{
-        color:blue;
-    }
-    
-    p{
-        font-family:Times New Roman;
-    }
-    #but{
-        background-color: rgb(255, 0, 0);
-    }
-    #but:hover{
-        background-color: rgb(255, 0, 0);
-    }
-    #abt{
-        color: aliceblue;
-        font-style:unset;
-        font-family:Lucida Fax;
-        
-    }
-    #abt_2{
-        color: rgb(0, 0, 0);
-        font-style:unset;
-        font-family:Lucida Fax; 
-        color: white;
-    }
-    #sk{
-        
-        color: white;
-        background-color:#000000;
-    }
-    footer{
-        color: aliceblue;
-        background-color: black;
-    }
-    #icon{
-        #a69b02
-        justify-content: end;
-    }
-    #type{color:red;font_size:larger;}
-   #pr1{
-    max-width: 200px;
-    height: auto;
-   }
-   #pr2{
-    max-width: 220px;
-    height: auto;
-   }
-   #pr3{
-    max-width: 340px;
-    height: 120px;
-   }
-
-   #symbol:hover{
-    text-shadow: 2px 2px 2px red;
-   }
-
-   img{
-    border-radius: 10%;
-    transition: transform 0.2s ease-in;
-   }
-   img:hover{
-    transform: scale(1.05);
-    box-shadow: 2px 2px 10px red;
-   }
-  #link{
-    text-decoration: none;
-    color: aqua;
-    font-size: x-large;
-    margin-top:25px;
-    border-radius: 20%;
-    animation: spin 2s 5s infinite linear;
-  }
-  @keyframes spin{
-      0%{}
-      10%{
-          border-top: 2px solid red;
-      }
-      20%{
-          border-top: 2px solid red;
-      }
-      30%{
-          border-right: 2px solid red;
-      }
-      40%{
-          border-right: 2px solid red;
-      }
-      50%{
-          border-bottom: 2px solid red;
-      }
-      60%{
-          border-bottom: 2px solid red;
-      }
-      70%{
-          border-left: 2px solid red;
-      }
-      80%{
-          border-left: 2px solid red;
-      }
-      90%{
-          border: 2px solid red;
-      }
-      100%{}
-  }
-  code{
-      color: white;
-  }
-            </style>
-
-
-
-
-
-
-
