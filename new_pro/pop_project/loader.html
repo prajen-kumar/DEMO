@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function run(){
+            console.log("succesfully opened...");
+            window.location.href="index.html";
+        }
+        setTimeout(run,6000)
+    </script>
+</head>
+<body>
+    <div class="circle"><div class="scircle"></div></div>
+    
+    <p>Inflating Ballons...</p>
+</body>
+</html>
+<style>
+    body {
+        background-color: rgba(0, 255, 255, 0.858);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* This stacks items vertically */
+    min-height: 100vh;
+    margin: 0;
+}
+    .circle{
+        padding: 10px 10px 10px 10px;
+        width: 90px;
+        height: 90px;
+        border: 10px solid rgb(195, 255, 0);
+        background-color: rgb(0, 34, 255);
+        border-radius: 50%;
+        animation:round 2s infinite 0s linear;
+    }
+    .scircle{
+        margin: 6px 5px 9px 5px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 10px solid rgb(195, 255, 0);
+        background-color: aqua;
+        animation:sround 2s  infinite 0s linear;
+        
+    }
+
+    @keyframes round {
+        
+        0%{
+            border: 10px solid rgb(255, 0, 0);
+            border: 10px solid rgb(195, 255, 0);}
+        20%{
+            border: 10px solid rgb(255, 0, 0);
+            border-top: 10px solid aqua;
+        }
+        40%{
+            background-color: red;
+            border-right: 10px solid aqua;}
+        60%{
+            background-color: red;
+            border: 10px solid rgb(195, 255, 0);
+            border-bottom: 10px solid aqua;
+        }
+        80%{
+           
+            border: 10px solid rgb(195, 255, 0);
+            border-left:10px solid aqua;}
+        100%{ 
+            border: 10px solid rgb(195, 255, 0);}
+    }
+    @keyframes sround {
+        0%{ border: 10px solid rgb(195, 255, 0);}
+        20%{
+            border: 10px solid rgb(195, 255, 0);
+            border-left: 10px solid aqua;}
+        40%{
+            border: 10px solid rgb(195, 255, 0);
+            border-bottom: 10px solid aqua;}
+        60%{
+            border: 10px solid rgb(195, 255, 0);
+            border-right: 10px solid aqua;}
+        80%{
+            border: 10px solid red;
+            border-top:10px solid aqua;}
+        100%{
+            
+            border: 10px solid red}
+    }
+p{
+    color:rgb(4, 0, 255);
+    font-size: 2rem;
+}
+</style>
