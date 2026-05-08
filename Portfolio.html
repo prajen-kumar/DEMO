@@ -12,15 +12,15 @@
         nav{
             background-image:linear-gradient(#000000);
         }
-        .navbar-nav li{
-            color:#ff00ff;
+        #nav_it li{
+            color:blue;
+            transition: color 2s ease;
         }
-        .navbar-nav li:hover {
+        #nav_it li{
             transform: translateY(-2px);
             text-decoration:undrline;
             color:red;
-            }
-
+        }
         /* Typography */
         .section-title { font-family: 'Lucida Fax', sans-serif; color: white; transition: 0.3s; }
         .section-title:hover { color: #ff0000; }
@@ -72,7 +72,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div id="nav_it" class="collapse navbar-collapse" id="navbarNav">
                 <!-- ms-auto pushes links to the right -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
