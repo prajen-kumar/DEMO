@@ -9,7 +9,7 @@
             console.log("succesfully opened...");
             window.location.href="index.html";
         }
-        setTimeout(run,6000)
+        setTimeout(ru,6000)
     </script>
 </head>
 <body>
@@ -32,63 +32,47 @@
         padding: 10px 10px 10px 10px;
         width: 90px;
         height: 90px;
-        border: 10px solid rgb(195, 255, 0);
-        background-color: rgb(0, 34, 255);
+        border-top: 10px solid red;
+        border: 10px solid rgb(0, 231, 231);
+        background-color: aqua;
         border-radius: 50%;
-        animation:round 2s infinite 0s linear;
+        transition:animation 1s ease;
+        animation:round 1s infinite 0s linear;
     }
     .scircle{
         margin: 6px 5px 9px 5px;
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        border: 10px solid rgb(195, 255, 0);
+        border-top:10px solid blue;
+        border-top-width: 10px;
+        border: 10px solid rgb(0, 231, 231);
         background-color: aqua;
-        animation:sround 2s  infinite 0s linear;
+        
+        animation:sround 1.4s infinite 0s linear;
+        
         
     }
 
-    @keyframes round {
-        
-        0%{
-            border: 10px solid rgb(255, 0, 0);
-            border: 10px solid rgb(195, 255, 0);}
-        20%{
-            border: 10px solid rgb(255, 0, 0);
-            border-top: 10px solid aqua;
-        }
-        40%{
-            background-color: red;
-            border-right: 10px solid aqua;}
-        60%{
-            background-color: red;
-            border: 10px solid rgb(195, 255, 0);
-            border-bottom: 10px solid aqua;
-        }
-        80%{
-           
-            border: 10px solid rgb(195, 255, 0);
-            border-left:10px solid aqua;}
-        100%{ 
-            border: 10px solid rgb(195, 255, 0);}
-    }
-    @keyframes sround {
-        0%{ border: 10px solid rgb(195, 255, 0);}
-        20%{
-            border: 10px solid rgb(195, 255, 0);
-            border-left: 10px solid aqua;}
-        40%{
-            border: 10px solid rgb(195, 255, 0);
-            border-bottom: 10px solid aqua;}
-        60%{
-            border: 10px solid rgb(195, 255, 0);
-            border-right: 10px solid aqua;}
-        80%{
-            border: 10px solid red;
-            border-top:10px solid aqua;}
-        100%{
+    @keyframes round{
+        0%{border-top: 10px solid red;
+            transform: rotate(0deg);
             
-            border: 10px solid red}
+        }
+        30%{border-top: 10px solid red;transform: rotate(90deg);}
+        60%{border-top: 10px solid red;transform: rotate(270deg);}
+        90%{border-top: 10px solid red;transform: rotate(360deg);}
+        100%{border-top: 10px solid red;transform: rotate(360deg);}
+    }
+    @keyframes sround{
+        0%{border-top: 10px solid rgb(217, 255, 0);
+            transform: rotate(0deg);
+            
+        }
+        30%{border-top: 10px solid rgb(217, 255, 0);transform: rotate(270deg);}
+        60%{border-top: 10px solid rgb(217, 255, 0);transform: rotate(120deg);}
+        90%{border-top: 10px solid rgb(217, 255, 0);transform: rotate(90deg);}
+        100%{border-top: 10px solid rgb(217, 255, 0);transform: rotate(0deg);}
     }
 p{
     color:rgb(4, 0, 255);
