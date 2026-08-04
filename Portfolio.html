@@ -21,9 +21,9 @@
 }
         #navbarNav li:hover {
     transform: translateY(-2px);
-    background-color: #ff0000;
     
-    text-decoration: underline; /* Fixed spelling */
+    background-color: #ff0000; 
+    box-shadow: #ff0000 0px 0px 20px ;
     
     color: red;
 }
@@ -38,7 +38,7 @@
         footer { background-color: black; color: aliceblue; }
         
         /* Projects & Images */
-        img { border-radius: 10%; transition: transform 0.2s ease-in; max-width: 100%; height: auto; }
+        .mb-5 img { border-radius: 10%; transition: transform 0.2s ease-in; max-width: 100%; height: auto; }
         img:hover { transform: scale(1.05); box-shadow: 2px 2px 10px red; }
         #pr1 { max-width: 200px; }
         #pr2 { max-width: 220px; }
@@ -100,6 +100,12 @@ box-shadow: 1px 1px 10px red !important;
     }
 }
 
+#img_fullstack{
+    transition: transform 0.2s ease-in;
+    height: 500px;
+    max-width: auto;
+}
+
     </style>
 </head>
 <body>
@@ -116,7 +122,9 @@ box-shadow: 1px 1px 10px red !important;
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#my portfolio">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#sk">Skills</a></li>
+                    <li class="nav-item"><a href="#img_fullstack" class="nav-link">Certificate</a></li>
                     <li class="nav-item"><a class="nav-link" href="https://www.w3schools.com" target="_blank">Learn Bootstrap</a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -172,6 +180,13 @@ box-shadow: 1px 1px 10px red !important;
             <div class="mb-5">
                 <img id="pr3" src="new_pro/age.png" alt="project3"><br>
                 <a id="link" href="https://prajen-kumar.github.io/DEMO/new_pro/agecalc_project/agecalc.html">Visit the Project</a>
+            </div>
+        </div>
+    </section>
+    <section id="certi" class="text-center">
+        <div class="container">
+            <div class="mb-1">
+                <img id="img_fullstack" src="img/M15D250010.jpg" alt="certificate " srcset="">
             </div>
         </div>
     </section>
