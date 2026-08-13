@@ -44,44 +44,58 @@
         #pr2 { max-width: 220px; }
         #pr3 { max-width: 340px; height: 120px; }
 
-        #symbol:hover { text-shadow: 2px 2px 10px red; cursor: pointer; }
+        #symbol:hover { text-shadow: 2px 2px 10px rgb(255, 1, 1); cursor: pointer;}
         
-        #link { 
-            text-decoration: none; color: aqua; font-size: x-large; 
-            padding: 5px 10px; display: inline-block;
-           
-        }
+        #link {
+    position: relative;
+    text-decoration: none;
+    color: aqua;
+    font-size: x-large;
+    padding: 5px 10px;
+    display: inline-block;
+}
 
-        #link:hover{
-            transition: animation 1s;
-            animation: spin 500ms infinite linear;
-            border-radius: 4s0%;
-        }
-        @keyframes spin {
-           0%{border-top: 2px solid red;
-            border-right: transparent;
-            border-bottom: transparent;
-            border-left: transparent;}
-           20%{border-top: 2px solid red;
-            border-right: transparent;
-            border-bottom: transparent;
-            border-left: transparent;}
-           40%{border-top: transparent;
-            border-right: 2px solid red;
-            border-bottom: transparent;
-            border-left: transparent;}
-           60%{border-top: transparent;
-            border-right: transparent;
-            border-bottom:2px solid red;
-            border-left: transparent;}
-           80%{border-top: transparent;
-            border-right: transparent;
-            border-bottom: transparent;
-            border-left:2px solid red;}
-           100%{border-top: 2px solid red;
-            border-right: transparent;
-            border-bottom: transparent;
-            border-left: transparent;}}
+#link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    pointer-events: none;
+}
+
+#link:hover::before {
+    transition: animation 0.1s ease-in-out;
+    animation: spin 500ms infinite linear;
+}
+
+@keyframes spin {
+    0% {
+        border-top-color: red;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    }
+
+    25% {
+        border-top-color: transparent;
+        border-right-color: red;
+    }
+
+    50% {
+        border-right-color: transparent;
+        border-bottom-color: red;
+    }
+
+    75% {
+        border-bottom-color: transparent;
+        border-left-color: red;
+    }
+
+    100% {
+        border-left-color: transparent;
+        border-top-color: red;
+    }
+}
         #back {
             
             width: 45px;
