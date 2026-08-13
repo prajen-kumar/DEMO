@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumar | Portfolio</title>
+    <title>Mohan Kumar | Portfolio</title>
       
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -49,7 +49,39 @@
         #link { 
             text-decoration: none; color: aqua; font-size: x-large; 
             padding: 5px 10px; display: inline-block;
+           
         }
+
+        #link:hover{
+            transition: animation 1s;
+            animation: spin 500ms infinite linear;
+            border-radius: 4s0%;
+        }
+        @keyframes spin {
+           0%{border-top: 2px solid red;
+            border-right: transparent;
+            border-bottom: transparent;
+            border-left: transparent;}
+           20%{border-top: 2px solid red;
+            border-right: transparent;
+            border-bottom: transparent;
+            border-left: transparent;}
+           40%{border-top: transparent;
+            border-right: 2px solid red;
+            border-bottom: transparent;
+            border-left: transparent;}
+           60%{border-top: transparent;
+            border-right: transparent;
+            border-bottom:2px solid red;
+            border-left: transparent;}
+           80%{border-top: transparent;
+            border-right: transparent;
+            border-bottom: transparent;
+            border-left:2px solid red;}
+           100%{border-top: 2px solid red;
+            border-right: transparent;
+            border-bottom: transparent;
+            border-left: transparent;}}
         #back {
             
             width: 45px;
@@ -102,7 +134,7 @@ box-shadow: 1px 1px 10px red !important;
 
 #img_fullstack{
     transition: transform 0.2s ease-in;
-    height: 450px;
+    height: 500px;
     max-width: auto;
 }
 
@@ -170,18 +202,18 @@ box-shadow: 1px 1px 10px red !important;
         <div class="container">
             <h3 class="section-title mb-5">MY PROJECTS</h3>
             <div class="mb-5">
-                <img id="pr1" src="new_pro/pop.png" alt="project1"><br>
+                <img id="pr1" src="new_pro/pop.png" alt="project1"><br><br>
                 <a id="link" href="https://prajen-kumar.github.io/DEMO/new_pro/pop_project/loader.html">Visit the Project</a>
             </div>
             <div class="mb-5">
-                <img id="pr2" src="new_pro/calc.png" alt="project2"><br>
+                <img id="pr2" src="new_pro/calc.png" alt="project2"><br><br>
                 <a id="link" href="https://prajen-kumar.github.io/DEMO/new_pro/calc_project/calculator.html">Visit the Project</a>
             </div>
             <div class="mb-5">
-                <img id="pr3" src="new_pro/age.png" alt="project3"><br>
+                <img id="pr3" src="new_pro/age.png" alt="project3"><br><br>
                 <a id="link" href="https://prajen-kumar.github.io/DEMO/new_pro/agecalc_project/agecalc.html">Visit the Project</a>
             </div>
-        </div>
+        </div><br>
     </section>
     <section id="certi" class="text-center">
         <div class="container">
