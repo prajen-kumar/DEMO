@@ -1,0 +1,2515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PL/SQL Practical Guide - Programs 3-10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            border-left: 5px solid #667eea;
+            padding-left: 30px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .subsection {
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .subsection-title {
+            font-size: 1.2em;
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: #e8e4f3;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.4;
+            border-left: 4px solid #007acc;
+        }
+        
+        .output-block {
+            background: #f0f0f0;
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #28a745;
+        }
+        
+        .procedure-block {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .procedure-block ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .procedure-block li {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        .note {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .note strong {
+            color: #1976D2;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .keyword {
+            color: #569cd6;
+            font-weight: bold;
+        }
+        
+        .string {
+            color: #ce9178;
+        }
+        
+        .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+        
+        .function {
+            color: #dcdcaa;
+        }
+        
+        .line-number {
+            color: #858585;
+            margin-right: 15px;
+            user-select: none;
+        }
+        
+        .connectivity-steps {
+            background: #f0f8ff;
+            border: 2px solid #4169e1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .connectivity-steps h4 {
+            color: #4169e1;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .step {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            border-left: 4px solid #4169e1;
+        }
+        
+        .step-number {
+            background: #4169e1;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            float: left;
+        }
+        
+        .step p {
+            margin-left: 45px;
+        }
+        
+        hr {
+            border: none;
+            height: 2px;
+            background: #667eea;
+            margin: 40px 0;
+            opacity: 0.3;
+        }
+        
+        .highlight {
+            background: #fffacd;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .error {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #c62828;
+        }
+        
+        .success {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #2e7d32;
+        }
+        
+        footer {
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #667eea;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .aim {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .aim strong {
+            color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PL/SQL Practical Guide</h1>
+            <p>Programs 3-10 with Code, Output & SQL Developer Setup</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">B.Sc. Computer Science with AI | Part III | Course Code: RDBMS with PL/SQL</p>
+        </header>
+        
+        <div class="content">
+            <!-- SQL DEVELOPER CONNECTIVITY SECTION -->
+            <div class="section">
+                <div class="section-title">📋 SQL Developer 64-bit Connectivity Setup</div>
+                
+                <div class="connectivity-steps">
+                    <h4>Step-by-Step Connection Configuration</h4>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <p><strong>Download & Install SQL Developer 64-bit:</strong><br>
+                        Visit oracle.com, download SQL Developer for Windows 64-bit. Extract the ZIP file to a desired location (e.g., C:\sqldeveloper).</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <p><strong>Launch SQL Developer:</strong><br>
+                        Navigate to the installation folder and run <span class="highlight">sqldeveloper.exe</span>. First launch may take 2-3 minutes to initialize.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <p><strong>Create New Database Connection:</strong><br>
+                        In the left panel, right-click on "Connections" → Select "New Connection"</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <p><strong>Fill Connection Details:</strong></p>
+                        <div class="code-block">
+Connection Name: MyConnection (or any name)
+Username: SYSTEM
+Password: (your database password)
+Hostname: localhost
+Port: 1521
+SID: xe (or orcl, depending on installation)
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <p><strong>Test Connection:</strong><br>
+                        Click "Test" button. You should see "Success" message. If failed, verify Oracle Database service is running.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <p><strong>Save Connection:</strong><br>
+                        Click "Save" and "Connect" to establish the connection.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <p><strong>Open SQL Worksheet:</strong><br>
+                        Once connected, right-click on your connection and select "Open SQL Worksheet" to start writing queries.</p>
+                    </div>
+                </div>
+                
+                <div class="note">
+                    <strong>ℹ️ Note:</strong> If you don't have Oracle Database installed locally, you can use <strong>Oracle Database Free (XE)</strong> which is available for download on Oracle's official website.
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- PROGRAM 3: SQL QUERIES -->
+            <div class="section">
+                <div class="section-title">Program 3: SQL Queries (Queries, Subqueries, Aggregate Functions)</div>
+                
+                <div class="aim">
+                    <strong>🎯 AIM:</strong> To understand and practice SQL SELECT queries, WHERE conditions, JOIN operations, subqueries, and aggregate functions for data retrieval and analysis.
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Prerequisites - Create Tables</div>
+                    <p>First, create necessary tables for practice:</p>
+                    
+                    <div class="code-block">
+<span class="comment">-- Create EMPLOYEES table</span>
+<span class="keyword">CREATE TABLE</span> EMPLOYEES (
+    EMP_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    EMP_NAME <span class="keyword">VARCHAR2</span>(50),
+    DEPARTMENT <span class="keyword">VARCHAR2</span>(30),
+    SALARY <span class="keyword">NUMBER</span>(10, 2),
+    HIRE_DATE <span class="keyword">DATE</span>,
+    MANAGER_ID <span class="keyword">NUMBER</span>
+);
+
+<span class="comment">-- Insert sample data</span>
+<span class="keyword">INSERT INTO</span> EMPLOYEES <span class="keyword">VALUES</span> (101, 'Rajesh Kumar', 'IT', 50000, '01-JAN-2020', NULL);
+<span class="keyword">INSERT INTO</span> EMPLOYEES <span class="keyword">VALUES</span> (102, 'Priya Singh', 'HR', 45000, '15-FEB-2021', 101);
+<span class="keyword">INSERT INTO</span> EMPLOYEES <span class="keyword">VALUES</span> (103, 'Amit Patel', 'IT', 55000, '20-MAR-2020', 101);
+<span class="keyword">INSERT INTO</span> EMPLOYEES <span class="keyword">VALUES</span> (104, 'Neha Sharma', 'Finance', 48000, '10-APR-2021', NULL);
+<span class="keyword">INSERT INTO</span> EMPLOYEES <span class="keyword">VALUES</span> (105, 'Vikram Desai', 'IT', 52000, '05-MAY-2020', 101);
+
+<span class="keyword">COMMIT</span>;
+
+<span class="comment">-- Create PROJECTS table</span>
+<span class="keyword">CREATE TABLE</span> PROJECTS (
+    PROJECT_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    PROJECT_NAME <span class="keyword">VARCHAR2</span>(50),
+    BUDGET <span class="keyword">NUMBER</span>(12, 2),
+    EMP_ID <span class="keyword">NUMBER</span>,
+    <span class="keyword">FOREIGN KEY</span> (EMP_ID) <span class="keyword">REFERENCES</span> EMPLOYEES(EMP_ID)
+);
+
+<span class="keyword">INSERT INTO</span> PROJECTS <span class="keyword">VALUES</span> (1001, 'E-Commerce Portal', 500000, 101);
+<span class="keyword">INSERT INTO</span> PROJECTS <span class="keyword">VALUES</span> (1002, 'Mobile App Dev', 300000, 103);
+<span class="keyword">INSERT INTO</span> PROJECTS <span class="keyword">VALUES</span> (1003, 'Data Analytics', 250000, 105);
+<span class="keyword">INSERT INTO</span> PROJECTS <span class="keyword">VALUES</span> (1004, 'HR Management', 150000, 102);
+
+<span class="keyword">COMMIT</span>;
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Query 1: Simple SELECT with WHERE Clause</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Display all employees from IT department with salary > 50000</span>
+<span class="keyword">SELECT</span> EMP_ID, EMP_NAME, DEPARTMENT, SALARY
+<span class="keyword">FROM</span> EMPLOYEES
+<span class="keyword">WHERE</span> DEPARTMENT = <span class="string">'IT'</span> <span class="keyword">AND</span> SALARY > 50000;
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+EMP_ID | EMP_NAME      | DEPARTMENT | SALARY
+-------|---------------|------------|--------
+103    | Amit Patel    | IT         | 55000
+105    | Vikram Desai  | IT         | 52000
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Query 2: Aggregate Functions</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Calculate total, average, minimum, and maximum salary</span>
+<span class="keyword">SELECT</span>
+    <span class="function">COUNT</span>(*) <span class="keyword">AS</span> TOTAL_EMPLOYEES,
+    <span class="function">SUM</span>(SALARY) <span class="keyword">AS</span> TOTAL_SALARY,
+    <span class="function">AVG</span>(SALARY) <span class="keyword">AS</span> AVERAGE_SALARY,
+    <span class="function">MAX</span>(SALARY) <span class="keyword">AS</span> HIGHEST_SALARY,
+    <span class="function">MIN</span>(SALARY) <span class="keyword">AS</span> LOWEST_SALARY
+<span class="keyword">FROM</span> EMPLOYEES;
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+TOTAL_EMPLOYEES | TOTAL_SALARY | AVERAGE_SALARY | HIGHEST_SALARY | LOWEST_SALARY
+5               | 250000       | 50000          | 55000          | 45000
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Query 3: GROUP BY and HAVING</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Calculate average salary by department</span>
+<span class="keyword">SELECT</span> DEPARTMENT, <span class="function">COUNT</span>(*) <span class="keyword">AS</span> EMP_COUNT, <span class="function">AVG</span>(SALARY) <span class="keyword">AS</span> AVG_SALARY
+<span class="keyword">FROM</span> EMPLOYEES
+<span class="keyword">GROUP BY</span> DEPARTMENT
+<span class="keyword">HAVING</span> <span class="function">AVG</span>(SALARY) > 48000
+<span class="keyword">ORDER BY</span> AVG_SALARY <span class="keyword">DESC</span>;
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+DEPARTMENT | EMP_COUNT | AVG_SALARY
+-----------|-----------|----------
+IT         | 3         | 52333.33
+Finance    | 1         | 48000
+HR         | 1         | 45000
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Query 4: INNER JOIN</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Display employees and their assigned projects</span>
+<span class="keyword">SELECT</span> e.EMP_ID, e.EMP_NAME, p.PROJECT_NAME, p.BUDGET
+<span class="keyword">FROM</span> EMPLOYEES e
+<span class="keyword">INNER JOIN</span> PROJECTS p <span class="keyword">ON</span> e.EMP_ID = p.EMP_ID
+<span class="keyword">ORDER BY</span> e.EMP_NAME;
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+EMP_ID | EMP_NAME      | PROJECT_NAME      | BUDGET
+-------|---------------|-------------------|--------
+103    | Amit Patel    | Mobile App Dev    | 300000
+101    | Rajesh Kumar  | E-Commerce Portal | 500000
+105    | Vikram Desai  | Data Analytics    | 250000
+102    | Priya Singh   | HR Management     | 150000
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Query 5: LEFT OUTER JOIN</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Display all employees with their projects (if assigned)</span>
+<span class="keyword">SELECT</span> e.EMP_ID, e.EMP_NAME, e.DEPARTMENT, 
+       <span class="function">NVL</span>(p.PROJECT_NAME, <span class="string">'Not Assigned'</span>) <span class="keyword">AS</span> PROJECT_NAME
+<span class="keyword">FROM</span> EMPLOYEES e
+<span class="keyword">LEFT OUTER JOIN</span> PROJECTS p <span class="keyword">ON</span> e.EMP_ID = p.EMP_ID
+<span class="keyword">ORDER BY</span> e.EMP_ID;
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+EMP_ID | EMP_NAME      | DEPARTMENT | PROJECT_NAME
+-------|---------------|------------|--------------------
+101    | Rajesh Kumar  | IT         | E-Commerce Portal
+102    | Priya Singh   | HR         | HR Management
+103    | Amit Patel    | IT         | Mobile App Dev
+104    | Neha Sharma   | Finance    | Not Assigned
+105    | Vikram Desai  | IT         | Data Analytics
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Query 6: Subquery (Inner Query)</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Find employees earning more than average salary</span>
+<span class="keyword">SELECT</span> EMP_ID, EMP_NAME, SALARY
+<span class="keyword">FROM</span> EMPLOYEES
+<span class="keyword">WHERE</span> SALARY > (<span class="keyword">SELECT</span> <span class="function">AVG</span>(SALARY) <span class="keyword">FROM</span> EMPLOYEES)
+<span class="keyword">ORDER BY</span> SALARY <span class="keyword">DESC</span>;
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+EMP_ID | EMP_NAME      | SALARY
+-------|---------------|--------
+103    | Amit Patel    | 55000
+105    | Vikram Desai  | 52000
+101    | Rajesh Kumar  | 50000
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Query 7: Subquery with IN Operator</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Find employees who manage projects with budget > 300000</span>
+<span class="keyword">SELECT</span> EMP_ID, EMP_NAME, DEPARTMENT, SALARY
+<span class="keyword">FROM</span> EMPLOYEES
+<span class="keyword">WHERE</span> EMP_ID <span class="keyword">IN</span> (
+    <span class="keyword">SELECT</span> EMP_ID 
+    <span class="keyword">FROM</span> PROJECTS 
+    <span class="keyword">WHERE</span> BUDGET > 300000
+);
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+EMP_ID | EMP_NAME      | DEPARTMENT | SALARY
+-------|---------------|------------|--------
+101    | Rajesh Kumar  | IT         | 50000
+103    | Amit Patel    | IT         | 55000
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Query 8: Correlated Subquery</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Find employees earning more than average of their department</span>
+<span class="keyword">SELECT</span> EMP_ID, EMP_NAME, DEPARTMENT, SALARY
+<span class="keyword">FROM</span> EMPLOYEES e
+<span class="keyword">WHERE</span> SALARY > (
+    <span class="keyword">SELECT</span> <span class="function">AVG</span>(SALARY) 
+    <span class="keyword">FROM</span> EMPLOYEES 
+    <span class="keyword">WHERE</span> DEPARTMENT = e.DEPARTMENT
+)
+<span class="keyword">ORDER BY</span> DEPARTMENT;
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+EMP_ID | EMP_NAME      | DEPARTMENT | SALARY
+-------|---------------|------------|--------
+103    | Amit Patel    | IT         | 55000
+105    | Vikram Desai  | IT         | 52000
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- PROGRAM 4: EXCEPTION HANDLING -->
+            <div class="section">
+                <div class="section-title">Program 4: PL/SQL Exception Handling</div>
+                
+                <div class="aim">
+                    <strong>🎯 AIM:</strong> To understand and implement PL/SQL exception handling mechanisms including predefined exceptions, user-defined exceptions, and error handling with RAISE statement.
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Exception Handling Example 1: Predefined Exceptions</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    v_emp_id NUMBER;
+    v_emp_name VARCHAR2(50);
+    v_salary NUMBER;
+<span class="keyword">BEGIN</span>
+    <span class="comment">-- This will raise NO_DATA_FOUND exception</span>
+    <span class="keyword">SELECT</span> EMP_NAME, SALARY
+    <span class="keyword">INTO</span> v_emp_name, v_salary
+    <span class="keyword">FROM</span> EMPLOYEES
+    <span class="keyword">WHERE</span> EMP_ID = 999;
+    
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Employee: '</span> || v_emp_name);
+<span class="keyword">EXCEPTION</span>
+    <span class="keyword">WHEN</span> NO_DATA_FOUND <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error: Employee not found!'</span>);
+    <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error: '</span> || SQLERRM);
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Error: Employee not found!
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Exception Handling Example 2: TOO_MANY_ROWS Exception</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    v_dept VARCHAR2(30);
+    v_emp_name VARCHAR2(50);
+<span class="keyword">BEGIN</span>
+    <span class="keyword">SELECT</span> EMP_NAME
+    <span class="keyword">INTO</span> v_emp_name
+    <span class="keyword">FROM</span> EMPLOYEES
+    <span class="keyword">WHERE</span> DEPARTMENT = <span class="string">'IT'</span>;
+    
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Employee: '</span> || v_emp_name);
+<span class="keyword">EXCEPTION</span>
+    <span class="keyword">WHEN</span> TOO_MANY_ROWS <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error: Multiple employees found in IT dept!'</span>);
+    <span class="keyword">WHEN</span> NO_DATA_FOUND <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error: No employees found!'</span>);
+    <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Unexpected Error: '</span> || SQLERRM);
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Error: Multiple employees found in IT dept!
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Exception Handling Example 3: User-Defined Exception</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    v_emp_id NUMBER := 101;
+    v_salary NUMBER;
+    
+    <span class="comment">-- User-defined exception</span>
+    salary_too_high EXCEPTION;
+<span class="keyword">BEGIN</span>
+    <span class="keyword">SELECT</span> SALARY <span class="keyword">INTO</span> v_salary
+    <span class="keyword">FROM</span> EMPLOYEES
+    <span class="keyword">WHERE</span> EMP_ID = v_emp_id;
+    
+    <span class="keyword">IF</span> v_salary > 52000 <span class="keyword">THEN</span>
+        <span class="keyword">RAISE</span> salary_too_high;
+    <span class="keyword">ELSE</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Salary is acceptable: '</span> || v_salary);
+    <span class="keyword">END IF</span>;
+<span class="keyword">EXCEPTION</span>
+    <span class="keyword">WHEN</span> salary_too_high <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error: Salary exceeds limit of 52000!'</span>);
+    <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error: '</span> || SQLERRM);
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Salary is acceptable: 50000
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Exception Handling Example 4: PRAGMA EXCEPTION_INIT</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    v_emp_id NUMBER;
+    v_emp_name VARCHAR2(50) := <span class="string">'John Doe'</span>;
+    
+    <span class="comment">-- Associate exception name with Oracle error code</span>
+    duplicate_entry EXCEPTION;
+    <span class="keyword">PRAGMA</span> EXCEPTION_INIT(duplicate_entry, -00001);
+<span class="keyword">BEGIN</span>
+    <span class="keyword">INSERT INTO</span> EMPLOYEES (EMP_ID, EMP_NAME, DEPARTMENT, SALARY, HIRE_DATE)
+    <span class="keyword">VALUES</span> (101, v_emp_name, <span class="string">'IT'</span>, 50000, SYSDATE);
+<span class="keyword">EXCEPTION</span>
+    <span class="keyword">WHEN</span> duplicate_entry <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error: Employee ID already exists!'</span>);
+    <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error: '</span> || SQLERRM);
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Error: Employee ID already exists!
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Exception Handling Example 5: Nested Exception Handling</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    v_emp_id NUMBER;
+    v_emp_name VARCHAR2(50);
+    v_salary NUMBER;
+<span class="keyword">BEGIN</span>
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SELECT</span> EMP_NAME, SALARY
+        <span class="keyword">INTO</span> v_emp_name, v_salary
+        <span class="keyword">FROM</span> EMPLOYEES
+        <span class="keyword">WHERE</span> EMP_ID = 102;
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Employee: '</span> || v_emp_name);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Salary: '</span> || v_salary);
+    <span class="keyword">EXCEPTION</span>
+        <span class="keyword">WHEN</span> NO_DATA_FOUND <span class="keyword">THEN</span>
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'Inner Exception: Employee not found'</span>);
+    <span class="keyword">END</span>;
+    
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Processing continues...'</span>);
+<span class="keyword">EXCEPTION</span>
+    <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Outer Exception: '</span> || SQLERRM);
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Employee: Priya Singh
+Salary: 45000
+Processing continues...
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- PROGRAM 5: CURSORS -->
+            <div class="section">
+                <div class="section-title">Program 5: PL/SQL Cursors</div>
+                
+                <div class="aim">
+                    <strong>🎯 AIM:</strong> To understand and implement explicit cursors for row-by-row processing, cursor attributes, and cursor loops.
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Cursor Example 1: Implicit Cursor</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    v_rows_updated NUMBER;
+<span class="keyword">BEGIN</span>
+    <span class="comment">-- Implicit cursor example</span>
+    <span class="keyword">UPDATE</span> EMPLOYEES
+    <span class="keyword">SET</span> SALARY = SALARY * 1.10
+    <span class="keyword">WHERE</span> DEPARTMENT = <span class="string">'IT'</span>;
+    
+    <span class="comment">-- Use SQL%ROWCOUNT to check affected rows</span>
+    v_rows_updated := SQL%ROWCOUNT;
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Rows updated: '</span> || v_rows_updated);
+    
+    <span class="keyword">IF</span> SQL%FOUND <span class="keyword">THEN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Update successful'</span>);
+    <span class="keyword">END IF</span>;
+    
+    ROLLBACK;
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Rows updated: 3
+Update successful
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Cursor Example 2: Explicit Cursor - Basic</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    <span class="comment">-- Declare explicit cursor</span>
+    <span class="keyword">CURSOR</span> emp_cursor <span class="keyword">IS</span>
+    <span class="keyword">SELECT</span> EMP_ID, EMP_NAME, SALARY
+    <span class="keyword">FROM</span> EMPLOYEES
+    <span class="keyword">WHERE</span> DEPARTMENT = <span class="string">'IT'</span>;
+    
+    v_emp_id EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>;
+    v_emp_name EMPLOYEES.EMP_NAME%<span class="keyword">TYPE</span>;
+    v_salary EMPLOYEES.SALARY%<span class="keyword">TYPE</span>;
+<span class="keyword">BEGIN</span>
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'=== IT Department Employees ==='</span>);
+    
+    <span class="comment">-- Open cursor</span>
+    <span class="keyword">OPEN</span> emp_cursor;
+    
+    <span class="comment">-- Fetch records one by one</span>
+    <span class="keyword">LOOP</span>
+        <span class="keyword">FETCH</span> emp_cursor <span class="keyword">INTO</span> v_emp_id, v_emp_name, v_salary;
+        <span class="keyword">EXIT WHEN</span> emp_cursor%NOTFOUND;
+        
+        DBMS_OUTPUT.PUT_LINE(v_emp_id || <span class="string">' | '</span> || v_emp_name || <span class="string">' | '</span> || v_salary);
+    <span class="keyword">END LOOP</span>;
+    
+    <span class="comment">-- Close cursor</span>
+    <span class="keyword">CLOSE</span> emp_cursor;
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+=== IT Department Employees ===
+101 | Rajesh Kumar | 50000
+103 | Amit Patel | 55000
+105 | Vikram Desai | 52000
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Cursor Example 3: Cursor FOR Loop</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    <span class="keyword">CURSOR</span> emp_cursor <span class="keyword">IS</span>
+    <span class="keyword">SELECT</span> EMP_ID, EMP_NAME, DEPARTMENT, SALARY
+    <span class="keyword">FROM</span> EMPLOYEES
+    <span class="keyword">ORDER BY</span> SALARY <span class="keyword">DESC</span>;
+<span class="keyword">BEGIN</span>
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'=== All Employees (Sorted by Salary) ==='</span>);
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'ID  | Name              | Dept     | Salary'</span>);
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'----+-------------------+----------+-------'</span>);
+    
+    <span class="comment">-- FOR loop automatically opens, fetches, and closes cursor</span>
+    <span class="keyword">FOR</span> emp_rec <span class="keyword">IN</span> emp_cursor
+    <span class="keyword">LOOP</span>
+        DBMS_OUTPUT.PUT_LINE(
+            <span class="function">LPAD</span>(emp_rec.EMP_ID, 3) || <span class="string">' | '</span> ||
+            <span class="function">RPAD</span>(emp_rec.EMP_NAME, 17) || <span class="string">' | '</span> ||
+            <span class="function">RPAD</span>(emp_rec.DEPARTMENT, 8) || <span class="string">' | '</span> ||
+            emp_rec.SALARY
+        );
+    <span class="keyword">END LOOP</span>;
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+=== All Employees (Sorted by Salary) ===
+ID  | Name              | Dept     | Salary
+----+-------------------+----------+-------
+103 | Amit Patel        | IT       | 55000
+105 | Vikram Desai      | IT       | 52000
+101 | Rajesh Kumar      | IT       | 50000
+104 | Neha Sharma       | Finance  | 48000
+102 | Priya Singh       | HR       | 45000
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Cursor Example 4: Parameterized Cursor</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    <span class="comment">-- Cursor with parameters</span>
+    <span class="keyword">CURSOR</span> emp_by_dept_cursor (p_dept VARCHAR2) <span class="keyword">IS</span>
+    <span class="keyword">SELECT</span> EMP_ID, EMP_NAME, SALARY
+    <span class="keyword">FROM</span> EMPLOYEES
+    <span class="keyword">WHERE</span> DEPARTMENT = p_dept;
+<span class="keyword">BEGIN</span>
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'=== Employees in HR Department ==='</span>);
+    
+    <span class="keyword">FOR</span> emp_rec <span class="keyword">IN</span> emp_by_dept_cursor(<span class="string">'HR'</span>)
+    <span class="keyword">LOOP</span>
+        DBMS_OUTPUT.PUT_LINE(emp_rec.EMP_ID || <span class="string">' - '</span> || emp_rec.EMP_NAME || <span class="string">' - Rs.'</span> || emp_rec.SALARY);
+    <span class="keyword">END LOOP</span>;
+    
+    DBMS_OUTPUT.PUT_LINE(CHR(10) || <span class="string">'=== Employees in Finance Department ==='</span>);
+    
+    <span class="keyword">FOR</span> emp_rec <span class="keyword">IN</span> emp_by_dept_cursor(<span class="string">'Finance'</span>)
+    <span class="keyword">LOOP</span>
+        DBMS_OUTPUT.PUT_LINE(emp_rec.EMP_ID || <span class="string">' - '</span> || emp_rec.EMP_NAME || <span class="string">' - Rs.'</span> || emp_rec.SALARY);
+    <span class="keyword">END LOOP</span>;
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+=== Employees in HR Department ===
+102 - Priya Singh - Rs.45000
+
+=== Employees in Finance Department ===
+104 - Neha Sharma - Rs.48000
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Cursor Example 5: Cursor Attributes</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    <span class="keyword">CURSOR</span> emp_cursor <span class="keyword">IS</span>
+    <span class="keyword">SELECT</span> EMP_ID, EMP_NAME
+    <span class="keyword">FROM</span> EMPLOYEES;
+    
+    v_count NUMBER := 0;
+<span class="keyword">BEGIN</span>
+    <span class="keyword">OPEN</span> emp_cursor;
+    
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Cursor Attributes Test:'</span>);
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'%ISOPEN: '</span> || <span class="keyword">CASE WHEN</span> emp_cursor%ISOPEN <span class="keyword">THEN</span> <span class="string">'TRUE'</span> <span class="keyword">ELSE</span> <span class="string">'FALSE'</span> <span class="keyword">END</span>);
+    
+    <span class="keyword">LOOP</span>
+        <span class="keyword">FETCH</span> emp_cursor <span class="keyword">INTO</span> v_emp_id, v_emp_name;
+        <span class="keyword">EXIT WHEN</span> emp_cursor%NOTFOUND;
+        v_count := v_count + 1;
+    <span class="keyword">END LOOP</span>;
+    
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'%ROWCOUNT: '</span> || emp_cursor%ROWCOUNT || <span class="string">' rows fetched'</span>);
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'%FOUND: '</span> || <span class="keyword">CASE WHEN</span> emp_cursor%FOUND <span class="keyword">THEN</span> <span class="string">'TRUE'</span> <span class="keyword">ELSE</span> <span class="string">'FALSE'</span> <span class="keyword">END</span>);
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'%NOTFOUND: '</span> || <span class="keyword">CASE WHEN</span> emp_cursor%NOTFOUND <span class="keyword">THEN</span> <span class="string">'TRUE'</span> <span class="keyword">ELSE</span> <span class="string">'FALSE'</span> <span class="keyword">END</span>);
+    
+    <span class="keyword">CLOSE</span> emp_cursor;
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'%ISOPEN after close: '</span> || <span class="keyword">CASE WHEN</span> emp_cursor%ISOPEN <span class="keyword">THEN</span> <span class="string">'TRUE'</span> <span class="keyword">ELSE</span> <span class="string">'FALSE'</span> <span class="keyword">END</span>);
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Cursor Attributes Test:
+%ISOPEN: TRUE
+%ROWCOUNT: 5 rows fetched
+%FOUND: FALSE
+%NOTFOUND: TRUE
+%ISOPEN after close: FALSE
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- PROGRAM 6: TRIGGERS -->
+            <div class="section">
+                <div class="section-title">Program 6: PL/SQL Triggers</div>
+                
+                <div class="aim">
+                    <strong>🎯 AIM:</strong> To understand and implement PL/SQL triggers for automatic enforcement of business rules and data validation.
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Trigger Example 1: BEFORE INSERT Trigger</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Create SALARY_LOG table</span>
+<span class="keyword">CREATE TABLE</span> SALARY_LOG (
+    LOG_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    OPERATION <span class="keyword">VARCHAR2</span>(20),
+    EMP_ID <span class="keyword">NUMBER</span>,
+    OLD_SALARY <span class="keyword">NUMBER</span>,
+    NEW_SALARY <span class="keyword">NUMBER</span>,
+    LOG_DATE <span class="keyword">DATE</span>
+);
+
+<span class="comment">-- Create sequence for LOG_ID</span>
+<span class="keyword">CREATE SEQUENCE</span> salary_log_seq <span class="keyword">START WITH</span> 1;
+
+<span class="comment">-- Create BEFORE INSERT Trigger</span>
+<span class="keyword">CREATE OR REPLACE TRIGGER</span> emp_salary_check
+<span class="keyword">BEFORE INSERT ON</span> EMPLOYEES
+<span class="keyword">FOR EACH ROW</span>
+<span class="keyword">BEGIN</span>
+    <span class="comment">-- Validate salary</span>
+    <span class="keyword">IF</span> :NEW.SALARY &lt; 0 <span class="keyword">THEN</span>
+        <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20001, <span class="string">'Salary cannot be negative!'</span>);
+    <span class="keyword">END IF</span>;
+    
+    <span class="comment">-- Set hire date to current date if NULL</span>
+    <span class="keyword">IF</span> :NEW.HIRE_DATE <span class="keyword">IS NULL</span> <span class="keyword">THEN</span>
+        :NEW.HIRE_DATE := SYSDATE;
+    <span class="keyword">END IF</span>;
+    
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Before Insert Trigger Fired: New Employee '</span> || :NEW.EMP_NAME);
+<span class="keyword">END</span> emp_salary_check;
+/
+                    </div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Test the trigger</span>
+<span class="keyword">BEGIN</span>
+    <span class="keyword">INSERT INTO</span> EMPLOYEES (EMP_ID, EMP_NAME, DEPARTMENT, SALARY)
+    <span class="keyword">VALUES</span> (106, <span class="string">'Suresh Gupta'</span>, <span class="string">'IT'</span>, 54000);
+    <span class="keyword">COMMIT</span>;
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Before Insert Trigger Fired: New Employee Suresh Gupta
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Trigger Example 2: AFTER INSERT Trigger with Logging</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Create AFTER INSERT Trigger for logging</span>
+<span class="keyword">CREATE OR REPLACE TRIGGER</span> emp_insert_log
+<span class="keyword">AFTER INSERT ON</span> EMPLOYEES
+<span class="keyword">FOR EACH ROW</span>
+<span class="keyword">BEGIN</span>
+    <span class="keyword">INSERT INTO</span> SALARY_LOG 
+    (LOG_ID, OPERATION, EMP_ID, OLD_SALARY, NEW_SALARY, LOG_DATE)
+    <span class="keyword">VALUES</span> (
+        salary_log_seq.NEXTVAL,
+        <span class="string">'INSERT'</span>,
+        :NEW.EMP_ID,
+        NULL,
+        :NEW.SALARY,
+        SYSDATE
+    );
+    
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Log Entry Created for Employee: '</span> || :NEW.EMP_NAME);
+<span class="keyword">END</span> emp_insert_log;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Log Entry Created for Employee: Suresh Gupta
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Trigger Example 3: BEFORE UPDATE Trigger</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Create BEFORE UPDATE Trigger</span>
+<span class="keyword">CREATE OR REPLACE TRIGGER</span> emp_update_validation
+<span class="keyword">BEFORE UPDATE ON</span> EMPLOYEES
+<span class="keyword">FOR EACH ROW</span>
+<span class="keyword">BEGIN</span>
+    <span class="comment">-- Prevent salary reduction (salary can only increase or remain same)</span>
+    <span class="keyword">IF</span> :NEW.SALARY &lt; :OLD.SALARY <span class="keyword">THEN</span>
+        <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20002, <span class="string">'Cannot reduce salary! Old: '</span> || :OLD.SALARY || <span class="string">', New: '</span> || :NEW.SALARY);
+    <span class="keyword">END IF</span>;
+    
+    <span class="comment">-- Validate salary increase (max 20%)</span>
+    <span class="keyword">IF</span> (:NEW.SALARY - :OLD.SALARY) / :OLD.SALARY > 0.2 <span class="keyword">THEN</span>
+        <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20003, <span class="string">'Salary increase exceeds 20% limit!'</span>);
+    <span class="keyword">END IF</span>;
+    
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Salary Update Validation Passed for '</span> || :NEW.EMP_NAME);
+<span class="keyword">END</span> emp_update_validation;
+/
+                    </div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Test the update trigger</span>
+<span class="keyword">BEGIN</span>
+    <span class="keyword">UPDATE</span> EMPLOYEES
+    <span class="keyword">SET</span> SALARY = 55000
+    <span class="keyword">WHERE</span> EMP_ID = 101;
+    <span class="keyword">COMMIT</span>;
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Salary Update Validation Passed for Rajesh Kumar
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Trigger Example 4: AFTER UPDATE Trigger with Logging</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Create AFTER UPDATE Trigger</span>
+<span class="keyword">CREATE OR REPLACE TRIGGER</span> emp_update_log
+<span class="keyword">AFTER UPDATE ON</span> EMPLOYEES
+<span class="keyword">FOR EACH ROW</span>
+<span class="keyword">BEGIN</span>
+    <span class="keyword">IF</span> :OLD.SALARY &lt;&gt; :NEW.SALARY <span class="keyword">THEN</span>
+        <span class="keyword">INSERT INTO</span> SALARY_LOG
+        (LOG_ID, OPERATION, EMP_ID, OLD_SALARY, NEW_SALARY, LOG_DATE)
+        <span class="keyword">VALUES</span> (
+            salary_log_seq.NEXTVAL,
+            <span class="string">'UPDATE'</span>,
+            :OLD.EMP_ID,
+            :OLD.SALARY,
+            :NEW.SALARY,
+            SYSDATE
+        );
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Salary Update Logged: '</span> || :OLD.SALARY || <span class="string">' -> '</span> || :NEW.SALARY);
+    <span class="keyword">END IF</span>;
+<span class="keyword">END</span> emp_update_log;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Salary Update Logged: 50000 -> 55000
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Trigger Example 5: BEFORE DELETE Trigger</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Create BEFORE DELETE Trigger</span>
+<span class="keyword">CREATE OR REPLACE TRIGGER</span> emp_delete_protection
+<span class="keyword">BEFORE DELETE ON</span> EMPLOYEES
+<span class="keyword">FOR EACH ROW</span>
+<span class="keyword">BEGIN</span>
+    <span class="comment">-- Check if employee has active projects</span>
+    <span class="keyword">IF</span> EXISTS (
+        <span class="keyword">SELECT</span> 1 <span class="keyword">FROM</span> PROJECTS 
+        <span class="keyword">WHERE</span> EMP_ID = :OLD.EMP_ID
+    ) <span class="keyword">THEN</span>
+        <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20004, <span class="string">'Cannot delete employee with active projects!'</span>);
+    <span class="keyword">END IF</span>;
+    
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Employee '</span> || :OLD.EMP_NAME || <span class="string">' cleared for deletion'</span>);
+<span class="keyword">END</span> emp_delete_protection;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Employee will be deleted after this check
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">View Trigger Information</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Display all triggers in user schema</span>
+<span class="keyword">SELECT</span> TRIGGER_NAME, TRIGGER_TYPE, TRIGGERING_EVENT, TABLE_NAME, STATUS
+<span class="keyword">FROM</span> USER_TRIGGERS
+<span class="keyword">ORDER BY</span> TABLE_NAME, TRIGGER_NAME;
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+TRIGGER_NAME          | TRIGGER_TYPE | TRIGGERING_EVENT | TABLE_NAME  | STATUS
+----------------------|--------------+------------------+-------------+--------
+EMP_SALARY_CHECK      | BEFORE       | INSERT           | EMPLOYEES   | ENABLED
+EMP_INSERT_LOG        | AFTER        | INSERT           | EMPLOYEES   | ENABLED
+EMP_UPDATE_VALIDATION | BEFORE       | UPDATE           | EMPLOYEES   | ENABLED
+EMP_UPDATE_LOG        | AFTER        | UPDATE           | EMPLOYEES   | ENABLED
+EMP_DELETE_PROTECTION | BEFORE       | DELETE           | EMPLOYEES   | ENABLED
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- PROGRAM 7: PACKAGES -->
+            <div class="section">
+                <div class="section-title">Program 7: PL/SQL Packages</div>
+                
+                <div class="aim">
+                    <strong>🎯 AIM:</strong> To understand and implement PL/SQL packages with specification and body for modular programming and code reusability.
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Package Example: Employee Management Package</div>
+                    
+                    <div class="subsection-title" style="background: #e3f2fd; margin-top: 20px;">Step 1: Create Package Specification</div>
+                    
+                    <div class="code-block">
+<span class="keyword">CREATE OR REPLACE PACKAGE</span> emp_mgmt_pkg <span class="keyword">AS</span>
+    <span class="comment">-- Package-level variables/constants</span>
+    max_salary_increase CONSTANT NUMBER := 0.20;
+    
+    <span class="comment">-- Procedure to add new employee</span>
+    <span class="keyword">PROCEDURE</span> add_employee (
+        p_emp_id <span class="keyword">IN</span> EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>,
+        p_emp_name <span class="keyword">IN</span> EMPLOYEES.EMP_NAME%<span class="keyword">TYPE</span>,
+        p_dept <span class="keyword">IN</span> EMPLOYEES.DEPARTMENT%<span class="keyword">TYPE</span>,
+        p_salary <span class="keyword">IN</span> EMPLOYEES.SALARY%<span class="keyword">TYPE</span>
+    );
+    
+    <span class="comment">-- Procedure to update salary</span>
+    <span class="keyword">PROCEDURE</span> update_salary (
+        p_emp_id <span class="keyword">IN</span> EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>,
+        p_new_salary <span class="keyword">IN</span> EMPLOYEES.SALARY%<span class="keyword">TYPE</span>
+    );
+    
+    <span class="comment">-- Function to get employee details</span>
+    <span class="keyword">FUNCTION</span> get_emp_salary (
+        p_emp_id <span class="keyword">IN</span> EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>
+    ) <span class="keyword">RETURN</span> EMPLOYEES.SALARY%<span class="keyword">TYPE</span>;
+    
+    <span class="comment">-- Function to calculate bonus</span>
+    <span class="keyword">FUNCTION</span> calculate_bonus (
+        p_emp_id <span class="keyword">IN</span> EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>,
+        p_percentage <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">RETURN</span> NUMBER;
+    
+    <span class="comment">-- Procedure to get department statistics</span>
+    <span class="keyword">PROCEDURE</span> get_dept_stats (
+        p_dept <span class="keyword">IN</span> EMPLOYEES.DEPARTMENT%<span class="keyword">TYPE</span>,
+        p_avg_salary <span class="keyword">OUT</span> NUMBER,
+        p_emp_count <span class="keyword">OUT</span> NUMBER
+    );
+
+<span class="keyword">END</span> emp_mgmt_pkg;
+/
+                    </div>
+                    
+                    <div class="subsection-title" style="background: #e3f2fd; margin-top: 20px;">Step 2: Create Package Body</div>
+                    
+                    <div class="code-block">
+<span class="keyword">CREATE OR REPLACE PACKAGE BODY</span> emp_mgmt_pkg <span class="keyword">AS</span>
+    
+    <span class="comment">-- Implementation of add_employee procedure</span>
+    <span class="keyword">PROCEDURE</span> add_employee (
+        p_emp_id <span class="keyword">IN</span> EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>,
+        p_emp_name <span class="keyword">IN</span> EMPLOYEES.EMP_NAME%<span class="keyword">TYPE</span>,
+        p_dept <span class="keyword">IN</span> EMPLOYEES.DEPARTMENT%<span class="keyword">TYPE</span>,
+        p_salary <span class="keyword">IN</span> EMPLOYEES.SALARY%<span class="keyword">TYPE</span>
+    ) <span class="keyword">AS</span>
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">IF</span> p_salary &lt; 0 <span class="keyword">THEN</span>
+            <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20001, <span class="string">'Salary cannot be negative'</span>);
+        <span class="keyword">END IF</span>;
+        
+        <span class="keyword">INSERT INTO</span> EMPLOYEES (EMP_ID, EMP_NAME, DEPARTMENT, SALARY, HIRE_DATE)
+        <span class="keyword">VALUES</span> (p_emp_id, p_emp_name, p_dept, p_salary, SYSDATE);
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Employee '</span> || p_emp_name || <span class="string">' added successfully'</span>);
+        <span class="keyword">COMMIT</span>;
+    <span class="keyword">END</span> add_employee;
+    
+    <span class="comment">-- Implementation of update_salary procedure</span>
+    <span class="keyword">PROCEDURE</span> update_salary (
+        p_emp_id <span class="keyword">IN</span> EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>,
+        p_new_salary <span class="keyword">IN</span> EMPLOYEES.SALARY%<span class="keyword">TYPE</span>
+    ) <span class="keyword">AS</span>
+        v_old_salary EMPLOYEES.SALARY%<span class="keyword">TYPE</span>;
+        v_emp_name EMPLOYEES.EMP_NAME%<span class="keyword">TYPE</span>;
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SELECT</span> SALARY, EMP_NAME <span class="keyword">INTO</span> v_old_salary, v_emp_name
+        <span class="keyword">FROM</span> EMPLOYEES <span class="keyword">WHERE</span> EMP_ID = p_emp_id;
+        
+        <span class="keyword">IF</span> p_new_salary &lt; v_old_salary <span class="keyword">THEN</span>
+            <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20002, <span class="string">'Cannot reduce salary'</span>);
+        <span class="keyword">END IF</span>;
+        
+        <span class="keyword">IF</span> (p_new_salary - v_old_salary) / v_old_salary &gt; max_salary_increase <span class="keyword">THEN</span>
+            <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20003, <span class="string">'Salary increase exceeds limit'</span>);
+        <span class="keyword">END IF</span>;
+        
+        <span class="keyword">UPDATE</span> EMPLOYEES <span class="keyword">SET</span> SALARY = p_new_salary <span class="keyword">WHERE</span> EMP_ID = p_emp_id;
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Salary updated for '</span> || v_emp_name);
+        <span class="keyword">COMMIT</span>;
+    <span class="keyword">END</span> update_salary;
+    
+    <span class="comment">-- Implementation of get_emp_salary function</span>
+    <span class="keyword">FUNCTION</span> get_emp_salary (
+        p_emp_id <span class="keyword">IN</span> EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>
+    ) <span class="keyword">RETURN</span> EMPLOYEES.SALARY%<span class="keyword">TYPE</span> <span class="keyword">AS</span>
+        v_salary EMPLOYEES.SALARY%<span class="keyword">TYPE</span>;
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SELECT</span> SALARY <span class="keyword">INTO</span> v_salary
+        <span class="keyword">FROM</span> EMPLOYEES
+        <span class="keyword">WHERE</span> EMP_ID = p_emp_id;
+        <span class="keyword">RETURN</span> v_salary;
+    <span class="keyword">EXCEPTION</span>
+        <span class="keyword">WHEN</span> NO_DATA_FOUND <span class="keyword">THEN</span>
+            <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20004, <span class="string">'Employee not found'</span>);
+    <span class="keyword">END</span> get_emp_salary;
+    
+    <span class="comment">-- Implementation of calculate_bonus function</span>
+    <span class="keyword">FUNCTION</span> calculate_bonus (
+        p_emp_id <span class="keyword">IN</span> EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>,
+        p_percentage <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">RETURN</span> NUMBER <span class="keyword">AS</span>
+        v_salary EMPLOYEES.SALARY%<span class="keyword">TYPE</span>;
+    <span class="keyword">BEGIN</span>
+        v_salary := get_emp_salary(p_emp_id);
+        <span class="keyword">RETURN</span> v_salary * (p_percentage / 100);
+    <span class="keyword">END</span> calculate_bonus;
+    
+    <span class="comment">-- Implementation of get_dept_stats procedure</span>
+    <span class="keyword">PROCEDURE</span> get_dept_stats (
+        p_dept <span class="keyword">IN</span> EMPLOYEES.DEPARTMENT%<span class="keyword">TYPE</span>,
+        p_avg_salary <span class="keyword">OUT</span> NUMBER,
+        p_emp_count <span class="keyword">OUT</span> NUMBER
+    ) <span class="keyword">AS</span>
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SELECT</span> <span class="function">AVG</span>(SALARY), <span class="function">COUNT</span>(*)
+        <span class="keyword">INTO</span> p_avg_salary, p_emp_count
+        <span class="keyword">FROM</span> EMPLOYEES
+        <span class="keyword">WHERE</span> DEPARTMENT = p_dept;
+    <span class="keyword">EXCEPTION</span>
+        <span class="keyword">WHEN</span> NO_DATA_FOUND <span class="keyword">THEN</span>
+            p_avg_salary := 0;
+            p_emp_count := 0;
+    <span class="keyword">END</span> get_dept_stats;
+
+<span class="keyword">END</span> emp_mgmt_pkg;
+/
+                    </div>
+                    
+                    <div class="subsection-title" style="background: #e3f2fd; margin-top: 20px;">Step 3: Use the Package</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    v_avg_salary NUMBER;
+    v_emp_count NUMBER;
+    v_bonus NUMBER;
+<span class="keyword">BEGIN</span>
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'=== Employee Management Package Demo ==='</span>);
+    DBMS_OUTPUT.PUT_LINE(CHR(10));
+    
+    <span class="comment">-- Add new employee</span>
+    emp_mgmt_pkg.add_employee(107, <span class="string">'Pooja Verma'</span>, <span class="string">'IT'</span>, 56000);
+    
+    <span class="comment">-- Get employee salary</span>
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Employee ID 107 Salary: '</span> || emp_mgmt_pkg.get_emp_salary(107));
+    
+    <span class="comment">-- Calculate bonus</span>
+    v_bonus := emp_mgmt_pkg.calculate_bonus(107, 10);
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'10% Bonus: '</span> || v_bonus);
+    
+    <span class="comment">-- Get department statistics</span>
+    emp_mgmt_pkg.get_dept_stats(<span class="string">'IT'</span>, v_avg_salary, v_emp_count);
+    DBMS_OUTPUT.PUT_LINE(CHR(10) || <span class="string">'IT Department Stats:'</span>);
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Average Salary: '</span> || <span class="function">ROUND</span>(v_avg_salary, 2));
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Employee Count: '</span> || v_emp_count);
+    
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+=== Employee Management Package Demo ===
+
+Employee Pooja Verma added successfully
+Employee ID 107 Salary: 56000
+10% Bonus: 5600
+IT Department Stats:
+Average Salary: 53666.67
+Employee Count: 4
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- PROGRAM 8: LIBRARY MANAGEMENT -->
+            <div class="section">
+                <div class="section-title">Program 8: Library Management System</div>
+                
+                <div class="aim">
+                    <strong>🎯 AIM:</strong> To design and develop a complete database application for library management with tables for books, members, and transactions.
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Create Tables</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Create MEMBERS table</span>
+<span class="keyword">CREATE TABLE</span> MEMBERS (
+    MEMBER_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    MEMBER_NAME <span class="keyword">VARCHAR2</span>(50) <span class="keyword">NOT NULL</span>,
+    CONTACT <span class="keyword">VARCHAR2</span>(10),
+    EMAIL <span class="keyword">VARCHAR2</span>(50),
+    JOIN_DATE <span class="keyword">DATE</span> <span class="keyword">DEFAULT</span> SYSDATE,
+    MEMBERSHIP_STATUS <span class="keyword">VARCHAR2</span>(20) <span class="keyword">DEFAULT</span> <span class="string">'ACTIVE'</span>
+);
+
+<span class="comment">-- Create BOOKS table</span>
+<span class="keyword">CREATE TABLE</span> BOOKS (
+    BOOK_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    TITLE <span class="keyword">VARCHAR2</span>(100) <span class="keyword">NOT NULL</span>,
+    AUTHOR <span class="keyword">VARCHAR2</span>(50),
+    PUBLICATION <span class="keyword">VARCHAR2</span>(50),
+    PUB_YEAR <span class="keyword">NUMBER</span>,
+    TOTAL_COPIES <span class="keyword">NUMBER</span>,
+    AVAILABLE_COPIES <span class="keyword">NUMBER</span>,
+    CATEGORY <span class="keyword">VARCHAR2</span>(30)
+);
+
+<span class="comment">-- Create ISSUE_RETURN table</span>
+<span class="keyword">CREATE TABLE</span> ISSUE_RETURN (
+    TRANSACTION_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    MEMBER_ID <span class="keyword">NUMBER</span>,
+    BOOK_ID <span class="keyword">NUMBER</span>,
+    ISSUE_DATE <span class="keyword">DATE</span>,
+    DUE_DATE <span class="keyword">DATE</span>,
+    RETURN_DATE <span class="keyword">DATE</span>,
+    FINE_AMOUNT <span class="keyword">NUMBER</span>,
+    <span class="keyword">FOREIGN KEY</span> (MEMBER_ID) <span class="keyword">REFERENCES</span> MEMBERS(MEMBER_ID),
+    <span class="keyword">FOREIGN KEY</span> (BOOK_ID) <span class="keyword">REFERENCES</span> BOOKS(BOOK_ID)
+);
+
+<span class="comment">-- Insert sample data</span>
+<span class="keyword">INSERT INTO</span> MEMBERS <span class="keyword">VALUES</span> (1001, <span class="string">'Raj Kumar'</span>, <span class="string">'9876543210'</span>, <span class="string">'raj@email.com'</span>, <span class="string">'01-JAN-2023'</span>, <span class="string">'ACTIVE'</span>);
+<span class="keyword">INSERT INTO</span> MEMBERS <span class="keyword">VALUES</span> (1002, <span class="string">'Priya Sharma'</span>, <span class="string">'9876543211'</span>, <span class="string">'priya@email.com'</span>, <span class="string">'15-FEB-2023'</span>, <span class="string">'ACTIVE'</span>);
+<span class="keyword">INSERT INTO</span> MEMBERS <span class="keyword">VALUES</span> (1003, <span class="string">'Amit Singh'</span>, <span class="string">'9876543212'</span>, <span class="string">'amit@email.com'</span>, <span class="string">'01-MAR-2023'</span>, <span class="string">'ACTIVE'</span>);
+
+<span class="keyword">INSERT INTO</span> BOOKS <span class="keyword">VALUES</span> (2001, <span class="string">'Mastering Oracle'</span>, <span class="string">'Tom Kyte'</span>, <span class="string">'Oracle Press'</span>, 2020, 5, 3, <span class="string">'Database'</span>);
+<span class="keyword">INSERT INTO</span> BOOKS <span class="keyword">VALUES</span> (2002, <span class="string">'PL/SQL Programming'</span>, <span class="string">'Steven Feuerstein'</span>, <span class="string">'O''Reilly'</span>, 2019, 7, 5, <span class="string">'Database'</span>);
+<span class="keyword">INSERT INTO</span> BOOKS <span class="keyword">VALUES</span> (2003, <span class="string">'Clean Code'</span>, <span class="string">'Robert Martin'</span>, <span class="string">'Prentice Hall'</span>, 2018, 4, 2, <span class="string">'Programming'</span>);
+<span class="keyword">INSERT INTO</span> BOOKS <span class="keyword">VALUES</span> (2004, <span class="string">'Data Structures'</span>, <span class="string">'Cormen'</span>, <span class="string">'MIT Press'</span>, 2017, 6, 4, <span class="string">'Algorithms'</span>);
+
+<span class="keyword">INSERT INTO</span> ISSUE_RETURN <span class="keyword">VALUES</span> (5001, 1001, 2001, <span class="string">'01-SEP-2024'</span>, <span class="string">'15-SEP-2024'</span>, <span class="string">'10-SEP-2024'</span>, 0);
+<span class="keyword">INSERT INTO</span> ISSUE_RETURN <span class="keyword">VALUES</span> (5002, 1002, 2002, <span class="string">'05-SEP-2024'</span>, <span class="string">'19-SEP-2024'</span>, NULL, 0);
+<span class="keyword">INSERT INTO</span> ISSUE_RETURN <span class="keyword">VALUES</span> (5003, 1003, 2003, <span class="string">'08-SEP-2024'</span>, <span class="string">'22-SEP-2024'</span>, NULL, 0);
+
+<span class="keyword">COMMIT</span>;
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Library Package Specification</div>
+                    
+                    <div class="code-block">
+<span class="keyword">CREATE OR REPLACE PACKAGE</span> library_pkg <span class="keyword">AS</span>
+    <span class="keyword">PROCEDURE</span> issue_book (
+        p_member_id <span class="keyword">IN</span> NUMBER,
+        p_book_id <span class="keyword">IN</span> NUMBER,
+        p_transaction_id <span class="keyword">OUT</span> NUMBER
+    );
+    
+    <span class="keyword">PROCEDURE</span> return_book (
+        p_transaction_id <span class="keyword">IN</span> NUMBER,
+        p_return_date <span class="keyword">IN</span> DATE
+    );
+    
+    <span class="keyword">FUNCTION</span> calculate_fine (
+        p_due_date <span class="keyword">IN</span> DATE,
+        p_return_date <span class="keyword">IN</span> DATE
+    ) <span class="keyword">RETURN</span> NUMBER;
+    
+    <span class="keyword">PROCEDURE</span> get_member_books (
+        p_member_id <span class="keyword">IN</span> NUMBER
+    );
+    
+    <span class="keyword">PROCEDURE</span> get_overdue_books;
+    
+    <span class="keyword">FUNCTION</span> get_available_copies (
+        p_book_id <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">RETURN</span> NUMBER;
+
+<span class="keyword">END</span> library_pkg;
+/
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Library Package Body</div>
+                    
+                    <div class="code-block">
+<span class="keyword">CREATE OR REPLACE PACKAGE BODY</span> library_pkg <span class="keyword">AS</span>
+    
+    <span class="keyword">PROCEDURE</span> issue_book (
+        p_member_id <span class="keyword">IN</span> NUMBER,
+        p_book_id <span class="keyword">IN</span> NUMBER,
+        p_transaction_id <span class="keyword">OUT</span> NUMBER
+    ) <span class="keyword">AS</span>
+        v_available NUMBER;
+        v_trans_id NUMBER;
+    <span class="keyword">BEGIN</span>
+        <span class="comment">-- Check book availability</span>
+        <span class="keyword">SELECT</span> AVAILABLE_COPIES <span class="keyword">INTO</span> v_available
+        <span class="keyword">FROM</span> BOOKS <span class="keyword">WHERE</span> BOOK_ID = p_book_id;
+        
+        <span class="keyword">IF</span> v_available &lt;= 0 <span class="keyword">THEN</span>
+            <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20001, <span class="string">'Book not available!'</span>);
+        <span class="keyword">END IF</span>;
+        
+        <span class="comment">-- Get new transaction ID</span>
+        <span class="keyword">SELECT</span> NVL(<span class="function">MAX</span>(TRANSACTION_ID), 5000) + 1
+        <span class="keyword">INTO</span> v_trans_id <span class="keyword">FROM</span> ISSUE_RETURN;
+        
+        <span class="comment">-- Insert issue record</span>
+        <span class="keyword">INSERT INTO</span> ISSUE_RETURN
+        (TRANSACTION_ID, MEMBER_ID, BOOK_ID, ISSUE_DATE, DUE_DATE, FINE_AMOUNT)
+        <span class="keyword">VALUES</span> (v_trans_id, p_member_id, p_book_id, SYSDATE, SYSDATE + 14, 0);
+        
+        <span class="comment">-- Update available copies</span>
+        <span class="keyword">UPDATE</span> BOOKS <span class="keyword">SET</span> AVAILABLE_COPIES = AVAILABLE_COPIES - 1
+        <span class="keyword">WHERE</span> BOOK_ID = p_book_id;
+        
+        p_transaction_id := v_trans_id;
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Book issued successfully! Transaction ID: '</span> || v_trans_id);
+        <span class="keyword">COMMIT</span>;
+    <span class="keyword">EXCEPTION</span>
+        <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+            <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20099, SQLERRM);
+    <span class="keyword">END</span> issue_book;
+    
+    <span class="keyword">PROCEDURE</span> return_book (
+        p_transaction_id <span class="keyword">IN</span> NUMBER,
+        p_return_date <span class="keyword">IN</span> DATE
+    ) <span class="keyword">AS</span>
+        v_due_date DATE;
+        v_book_id NUMBER;
+        v_fine NUMBER;
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SELECT</span> DUE_DATE, BOOK_ID <span class="keyword">INTO</span> v_due_date, v_book_id
+        <span class="keyword">FROM</span> ISSUE_RETURN
+        <span class="keyword">WHERE</span> TRANSACTION_ID = p_transaction_id;
+        
+        <span class="comment">-- Calculate fine if overdue</span>
+        v_fine := calculate_fine(v_due_date, p_return_date);
+        
+        <span class="comment">-- Update return record</span>
+        <span class="keyword">UPDATE</span> ISSUE_RETURN
+        <span class="keyword">SET</span> RETURN_DATE = p_return_date, FINE_AMOUNT = v_fine
+        <span class="keyword">WHERE</span> TRANSACTION_ID = p_transaction_id;
+        
+        <span class="comment">-- Update available copies</span>
+        <span class="keyword">UPDATE</span> BOOKS <span class="keyword">SET</span> AVAILABLE_COPIES = AVAILABLE_COPIES + 1
+        <span class="keyword">WHERE</span> BOOK_ID = v_book_id;
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Book returned successfully! Fine: Rs.'</span> || v_fine);
+        <span class="keyword">COMMIT</span>;
+    <span class="keyword">EXCEPTION</span>
+        <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+            <span class="keyword">RAISE_APPLICATION_ERROR</span>(-20099, SQLERRM);
+    <span class="keyword">END</span> return_book;
+    
+    <span class="keyword">FUNCTION</span> calculate_fine (
+        p_due_date <span class="keyword">IN</span> DATE,
+        p_return_date <span class="keyword">IN</span> DATE
+    ) <span class="keyword">RETURN</span> NUMBER <span class="keyword">AS</span>
+        v_days_late NUMBER;
+        v_fine NUMBER := 0;
+    <span class="keyword">BEGIN</span>
+        v_days_late := p_return_date - p_due_date;
+        <span class="keyword">IF</span> v_days_late &gt; 0 <span class="keyword">THEN</span>
+            v_fine := v_days_late * 10; <span class="comment">-- Rs. 10 per day</span>
+        <span class="keyword">END IF</span>;
+        <span class="keyword">RETURN</span> v_fine;
+    <span class="keyword">END</span> calculate_fine;
+    
+    <span class="keyword">PROCEDURE</span> get_member_books (
+        p_member_id <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">AS</span>
+        <span class="keyword">CURSOR</span> book_cursor <span class="keyword">IS</span>
+        <span class="keyword">SELECT</span> i.TRANSACTION_ID, b.TITLE, i.ISSUE_DATE, i.DUE_DATE, i.RETURN_DATE
+        <span class="keyword">FROM</span> ISSUE_RETURN i
+        <span class="keyword">JOIN</span> BOOKS b <span class="keyword">ON</span> i.BOOK_ID = b.BOOK_ID
+        <span class="keyword">WHERE</span> i.MEMBER_ID = p_member_id;
+    <span class="keyword">BEGIN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Books issued to Member ID: '</span> || p_member_id);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'---------------------------------------------'</span>);
+        <span class="keyword">FOR</span> book_rec <span class="keyword">IN</span> book_cursor
+        <span class="keyword">LOOP</span>
+            DBMS_OUTPUT.PUT_LINE(
+                <span class="string">'Trans ID: '</span> || book_rec.TRANSACTION_ID ||
+                <span class="string">' | Book: '</span> || book_rec.TITLE ||
+                <span class="string">' | Due: '</span> || <span class="function">TO_CHAR</span>(book_rec.DUE_DATE, <span class="string">'DD-MON-YYYY'</span>)
+            );
+        <span class="keyword">END LOOP</span>;
+    <span class="keyword">END</span> get_member_books;
+    
+    <span class="keyword">PROCEDURE</span> get_overdue_books <span class="keyword">AS</span>
+        <span class="keyword">CURSOR</span> overdue_cursor <span class="keyword">IS</span>
+        <span class="keyword">SELECT</span> i.TRANSACTION_ID, m.MEMBER_NAME, b.TITLE, i.DUE_DATE, i.RETURN_DATE
+        <span class="keyword">FROM</span> ISSUE_RETURN i
+        <span class="keyword">JOIN</span> MEMBERS m <span class="keyword">ON</span> i.MEMBER_ID = m.MEMBER_ID
+        <span class="keyword">JOIN</span> BOOKS b <span class="keyword">ON</span> i.BOOK_ID = b.BOOK_ID
+        <span class="keyword">WHERE</span> i.RETURN_DATE <span class="keyword">IS NULL</span> <span class="keyword">AND</span> i.DUE_DATE &lt; SYSDATE;
+    <span class="keyword">BEGIN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'=== OVERDUE BOOKS ==='</span>);
+        <span class="keyword">FOR</span> overdue_rec <span class="keyword">IN</span> overdue_cursor
+        <span class="keyword">LOOP</span>
+            DBMS_OUTPUT.PUT_LINE(
+                overdue_rec.MEMBER_NAME || <span class="string">' | '</span> || overdue_rec.TITLE ||
+                <span class="string">' | Days Late: '</span> || (SYSDATE - overdue_rec.DUE_DATE)
+            );
+        <span class="keyword">END LOOP</span>;
+    <span class="keyword">END</span> get_overdue_books;
+    
+    <span class="keyword">FUNCTION</span> get_available_copies (
+        p_book_id <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">RETURN</span> NUMBER <span class="keyword">AS</span>
+        v_available NUMBER;
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SELECT</span> AVAILABLE_COPIES <span class="keyword">INTO</span> v_available
+        <span class="keyword">FROM</span> BOOKS <span class="keyword">WHERE</span> BOOK_ID = p_book_id;
+        <span class="keyword">RETURN</span> v_available;
+    <span class="keyword">EXCEPTION</span>
+        <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+            <span class="keyword">RETURN</span> -1;
+    <span class="keyword">END</span> get_available_copies;
+
+<span class="keyword">END</span> library_pkg;
+/
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Test Library Management System</div>
+                    
+                    <div class="code-block">
+<span class="keyword">DECLARE</span>
+    v_trans_id NUMBER;
+<span class="keyword">BEGIN</span>
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'=== LIBRARY MANAGEMENT SYSTEM TEST ==='</span>);
+    DBMS_OUTPUT.PUT_LINE(CHR(10));
+    
+    <span class="comment">-- Issue a book</span>
+    library_pkg.issue_book(1001, 2004, v_trans_id);
+    
+    <span class="comment">-- Get member books</span>
+    DBMS_OUTPUT.PUT_LINE(CHR(10));
+    library_pkg.get_member_books(1001);
+    
+    <span class="comment">-- Check available copies</span>
+    DBMS_OUTPUT.PUT_LINE(CHR(10) || <span class="string">'Available copies for Book 2004: '</span> || 
+        library_pkg.get_available_copies(2004));
+    
+    <span class="comment">-- Get overdue books</span>
+    DBMS_OUTPUT.PUT_LINE(CHR(10));
+    library_pkg.get_overdue_books();
+    
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+=== LIBRARY MANAGEMENT SYSTEM TEST ===
+
+Book issued successfully! Transaction ID: 5004
+Books issued to Member ID: 1001
+---------------------------------------------
+Trans ID: 5001 | Book: Mastering Oracle | Due: 15-SEP-2024
+Trans ID: 5004 | Book: Data Structures | Due: 27-SEP-2024
+
+Available copies for Book 2004: 3
+
+=== OVERDUE BOOKS ===
+Priya Sharma | PL/SQL Programming | Days Late: 1
+Amit Singh | Clean Code | Days Late: 2
+
+PL/SQL procedure successfully completed.
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- PROGRAM 9: STUDENT MARK SHEET -->
+            <div class="section">
+                <div class="section-title">Program 9: Student Mark Sheet Processing System</div>
+                
+                <div class="aim">
+                    <strong>🎯 AIM:</strong> To design and develop a comprehensive system for student mark sheet processing with grade calculation, result generation, and performance analysis.
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Create Tables</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Create STUDENTS table</span>
+<span class="keyword">CREATE TABLE</span> STUDENTS (
+    STUDENT_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    STUDENT_NAME <span class="keyword">VARCHAR2</span>(50) <span class="keyword">NOT NULL</span>,
+    DOB <span class="keyword">DATE</span>,
+    CLASS <span class="keyword">VARCHAR2</span>(20),
+    BRANCH <span class="keyword">VARCHAR2</span>(30)
+);
+
+<span class="comment">-- Create SUBJECTS table</span>
+<span class="keyword">CREATE TABLE</span> SUBJECTS (
+    SUBJECT_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    SUBJECT_NAME <span class="keyword">VARCHAR2</span>(50),
+    SUBJECT_CODE <span class="keyword">VARCHAR2</span>(10),
+    CREDITS <span class="keyword">NUMBER</span>,
+    MAX_MARKS <span class="keyword">NUMBER</span>
+);
+
+<span class="comment">-- Create MARKS table</span>
+<span class="keyword">CREATE TABLE</span> MARKS (
+    MARK_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    STUDENT_ID <span class="keyword">NUMBER</span>,
+    SUBJECT_ID <span class="keyword">NUMBER</span>,
+    SEMESTER <span class="keyword">NUMBER</span>,
+    MARKS_OBTAINED <span class="keyword">NUMBER</span>,
+    GRADE <span class="keyword">VARCHAR2</span>(2),
+    <span class="keyword">FOREIGN KEY</span> (STUDENT_ID) <span class="keyword">REFERENCES</span> STUDENTS(STUDENT_ID),
+    <span class="keyword">FOREIGN KEY</span> (SUBJECT_ID) <span class="keyword">REFERENCES</span> SUBJECTS(SUBJECT_ID)
+);
+
+<span class="comment">-- Create RESULT table</span>
+<span class="keyword">CREATE TABLE</span> RESULT (
+    RESULT_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    STUDENT_ID <span class="keyword">NUMBER</span>,
+    SEMESTER <span class="keyword">NUMBER</span>,
+    TOTAL_MARKS <span class="keyword">NUMBER</span>,
+    CGPA <span class="keyword">NUMBER</span>(3, 2),
+    RESULT_STATUS <span class="keyword">VARCHAR2</span>(20),
+    <span class="keyword">FOREIGN KEY</span> (STUDENT_ID) <span class="keyword">REFERENCES</span> STUDENTS(STUDENT_ID)
+);
+
+<span class="comment">-- Insert sample data</span>
+<span class="keyword">INSERT INTO</span> STUDENTS <span class="keyword">VALUES</span> (1, <span class="string">'Arun Kumar'</span>, <span class="string">'15-MAY-2005'</span>, <span class="string">'B.Sc AI'</span>, <span class="string">'Computer Science'</span>);
+<span class="keyword">INSERT INTO</span> STUDENTS <span class="keyword">VALUES</span> (2, <span class="string">'Deepa Singh'</span>, <span class="string">'20-JUN-2005'</span>, <span class="string">'B.Sc AI'</span>, <span class="string">'Computer Science'</span>);
+<span class="keyword">INSERT INTO</span> STUDENTS <span class="keyword">VALUES</span> (3, <span class="string">'Kavya Sharma'</span>, <span class="string">'10-JUL-2005'</span>, <span class="string">'B.Sc AI'</span>, <span class="string">'Computer Science'</span>);
+
+<span class="keyword">INSERT INTO</span> SUBJECTS <span class="keyword">VALUES</span> (101, <span class="string">'Database Management'</span>, <span class="string">'CS102'</span>, 4, 100);
+<span class="keyword">INSERT INTO</span> SUBJECTS <span class="keyword">VALUES</span> (102, <span class="string">'PL/SQL'</span>, <span class="string">'CS103'</span>, 3, 100);
+<span class="keyword">INSERT INTO</span> SUBJECTS <span class="keyword">VALUES</span> (103, <span class="string">'Data Structures'</span>, <span class="string">'CS104'</span>, 4, 100);
+<span class="keyword">INSERT INTO</span> SUBJECTS <span class="keyword">VALUES</span> (104, <span class="string">'Algorithms'</span>, <span class="string">'CS105'</span>, 3, 100);
+
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (1, 1, 101, 4, 85, <span class="string">'A'</span>);
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (2, 1, 102, 4, 92, <span class="string">'A+'</span>);
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (3, 1, 103, 4, 78, <span class="string">'B'</span>);
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (4, 1, 104, 4, 88, <span class="string">'A'</span>);
+
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (5, 2, 101, 4, 95, <span class="string">'A+'</span>);
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (6, 2, 102, 4, 87, <span class="string">'A'</span>);
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (7, 2, 103, 4, 91, <span class="string">'A'</span>);
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (8, 2, 104, 4, 82, <span class="string">'B'</span>);
+
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (9, 3, 101, 4, 72, <span class="string">'B'</span>);
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (10, 3, 102, 4, 68, <span class="string">'C'</span>);
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (11, 3, 103, 4, 75, <span class="string">'B'</span>);
+<span class="keyword">INSERT INTO</span> MARKS <span class="keyword">VALUES</span> (12, 3, 104, 4, 70, <span class="string">'B'</span>);
+
+<span class="keyword">COMMIT</span>;
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Create Mark Sheet Package</div>
+                    
+                    <div class="code-block">
+<span class="keyword">CREATE OR REPLACE PACKAGE</span> marksheet_pkg <span class="keyword">AS</span>
+    <span class="keyword">PROCEDURE</span> generate_result (
+        p_student_id <span class="keyword">IN</span> NUMBER,
+        p_semester <span class="keyword">IN</span> NUMBER
+    );
+    
+    <span class="keyword">FUNCTION</span> calculate_cgpa (
+        p_student_id <span class="keyword">IN</span> NUMBER,
+        p_semester <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">RETURN</span> NUMBER;
+    
+    <span class="keyword">FUNCTION</span> get_grade (
+        p_marks <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">RETURN</span> VARCHAR2;
+    
+    <span class="keyword">PROCEDURE</span> display_marksheet (
+        p_student_id <span class="keyword">IN</span> NUMBER,
+        p_semester <span class="keyword">IN</span> NUMBER
+    );
+    
+    <span class="keyword">PROCEDURE</span> display_class_performance (
+        p_semester <span class="keyword">IN</span> NUMBER
+    );
+
+<span class="keyword">END</span> marksheet_pkg;
+/
+
+<span class="keyword">CREATE OR REPLACE PACKAGE BODY</span> marksheet_pkg <span class="keyword">AS</span>
+    
+    <span class="keyword">FUNCTION</span> get_grade (p_marks <span class="keyword">IN</span> NUMBER) <span class="keyword">RETURN</span> VARCHAR2 <span class="keyword">AS</span>
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">IF</span> p_marks &gt;= 90 <span class="keyword">THEN</span> <span class="keyword">RETURN</span> <span class="string">'A+'</span>;
+        <span class="keyword">ELSIF</span> p_marks &gt;= 80 <span class="keyword">THEN</span> <span class="keyword">RETURN</span> <span class="string">'A'</span>;
+        <span class="keyword">ELSIF</span> p_marks &gt;= 70 <span class="keyword">THEN</span> <span class="keyword">RETURN</span> <span class="string">'B'</span>;
+        <span class="keyword">ELSIF</span> p_marks &gt;= 60 <span class="keyword">THEN</span> <span class="keyword">RETURN</span> <span class="string">'C'</span>;
+        <span class="keyword">ELSE</span> <span class="keyword">RETURN</span> <span class="string">'F'</span>;
+        <span class="keyword">END IF</span>;
+    <span class="keyword">END</span> get_grade;
+    
+    <span class="keyword">FUNCTION</span> calculate_cgpa (
+        p_student_id <span class="keyword">IN</span> NUMBER,
+        p_semester <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">RETURN</span> NUMBER <span class="keyword">AS</span>
+        v_total_marks NUMBER;
+        v_total_credits NUMBER;
+        v_cgpa NUMBER;
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SELECT</span> <span class="function">SUM</span>(m.MARKS_OBTAINED * s.CREDITS), <span class="function">SUM</span>(s.CREDITS)
+        <span class="keyword">INTO</span> v_total_marks, v_total_credits
+        <span class="keyword">FROM</span> MARKS m
+        <span class="keyword">JOIN</span> SUBJECTS s <span class="keyword">ON</span> m.SUBJECT_ID = s.SUBJECT_ID
+        <span class="keyword">WHERE</span> m.STUDENT_ID = p_student_id <span class="keyword">AND</span> m.SEMESTER = p_semester;
+        
+        v_cgpa := v_total_marks / (v_total_credits * 100);
+        <span class="keyword">RETURN</span> <span class="function">ROUND</span>(v_cgpa, 2);
+    <span class="keyword">EXCEPTION</span>
+        <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+            <span class="keyword">RETURN</span> 0;
+    <span class="keyword">END</span> calculate_cgpa;
+    
+    <span class="keyword">PROCEDURE</span> generate_result (
+        p_student_id <span class="keyword">IN</span> NUMBER,
+        p_semester <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">AS</span>
+        v_cgpa NUMBER;
+        v_total_marks NUMBER;
+        v_result_status VARCHAR2(20);
+        v_result_id NUMBER;
+    <span class="keyword">BEGIN</span>
+        <span class="comment">-- Calculate CGPA</span>
+        v_cgpa := calculate_cgpa(p_student_id, p_semester);
+        
+        <span class="comment">-- Calculate total marks</span>
+        <span class="keyword">SELECT</span> <span class="function">SUM</span>(MARKS_OBTAINED)
+        <span class="keyword">INTO</span> v_total_marks
+        <span class="keyword">FROM</span> MARKS
+        <span class="keyword">WHERE</span> STUDENT_ID = p_student_id <span class="keyword">AND</span> SEMESTER = p_semester;
+        
+        <span class="comment">-- Determine result status</span>
+        <span class="keyword">IF</span> v_cgpa &gt;= 6.0 <span class="keyword">THEN</span>
+            v_result_status := <span class="string">'PASS'</span>;
+        <span class="keyword">ELSE</span>
+            v_result_status := <span class="string">'FAIL'</span>;
+        <span class="keyword">END IF</span>;
+        
+        <span class="comment">-- Insert result</span>
+        <span class="keyword">SELECT</span> NVL(<span class="function">MAX</span>(RESULT_ID), 1000) + 1
+        <span class="keyword">INTO</span> v_result_id <span class="keyword">FROM</span> RESULT;
+        
+        <span class="keyword">INSERT INTO</span> RESULT
+        (RESULT_ID, STUDENT_ID, SEMESTER, TOTAL_MARKS, CGPA, RESULT_STATUS)
+        <span class="keyword">VALUES</span> (v_result_id, p_student_id, p_semester, v_total_marks, v_cgpa, v_result_status);
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Result generated - CGPA: '</span> || v_cgpa || <span class="string">' Status: '</span> || v_result_status);
+        <span class="keyword">COMMIT</span>;
+    <span class="keyword">END</span> generate_result;
+    
+    <span class="keyword">PROCEDURE</span> display_marksheet (
+        p_student_id <span class="keyword">IN</span> NUMBER,
+        p_semester <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">AS</span>
+        v_student_name VARCHAR2(50);
+        v_cgpa NUMBER;
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SELECT</span> STUDENT_NAME <span class="keyword">INTO</span> v_student_name
+        <span class="keyword">FROM</span> STUDENTS
+        <span class="keyword">WHERE</span> STUDENT_ID = p_student_id;
+        
+        v_cgpa := calculate_cgpa(p_student_id, p_semester);
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'========================================='</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'         MARKSHEET - SEMESTER '</span> || p_semester);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'========================================='</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Student: '</span> || v_student_name || <span class="string">' | ID: '</span> || p_student_id);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Subject          | Marks | Grade | Credits'</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'-----------------------------------------'</span>);
+        
+        <span class="keyword">FOR</span> mark_rec <span class="keyword">IN</span> (
+            <span class="keyword">SELECT</span> s.SUBJECT_NAME, m.MARKS_OBTAINED, m.GRADE, s.CREDITS
+            <span class="keyword">FROM</span> MARKS m
+            <span class="keyword">JOIN</span> SUBJECTS s <span class="keyword">ON</span> m.SUBJECT_ID = s.SUBJECT_ID
+            <span class="keyword">WHERE</span> m.STUDENT_ID = p_student_id <span class="keyword">AND</span> m.SEMESTER = p_semester
+        )
+        <span class="keyword">LOOP</span>
+            DBMS_OUTPUT.PUT_LINE(
+                <span class="function">RPAD</span>(mark_rec.SUBJECT_NAME, 17) || <span class="string">'| '</span> ||
+                <span class="function">LPAD</span>(mark_rec.MARKS_OBTAINED, 5) || <span class="string">' | '</span> ||
+                <span class="function">RPAD</span>(mark_rec.GRADE, 5) || <span class="string">' | '</span> ||
+                mark_rec.CREDITS
+            );
+        <span class="keyword">END LOOP</span>;
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'========================================='</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'CGPA: '</span> || v_cgpa);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'========================================='</span>);
+    <span class="keyword">END</span> display_marksheet;
+    
+    <span class="keyword">PROCEDURE</span> display_class_performance (
+        p_semester <span class="keyword">IN</span> NUMBER
+    ) <span class="keyword">AS</span>
+    <span class="keyword">BEGIN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'========== CLASS PERFORMANCE - SEMESTER '</span> || p_semester || <span class="string">' =========='</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Student         | Total Marks | CGPA | Status'</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'----------------------------------------------'</span>);
+        
+        <span class="keyword">FOR</span> perf_rec <span class="keyword">IN</span> (
+            <span class="keyword">SELECT</span> st.STUDENT_NAME, r.TOTAL_MARKS, r.CGPA, r.RESULT_STATUS
+            <span class="keyword">FROM</span> RESULT r
+            <span class="keyword">JOIN</span> STUDENTS st <span class="keyword">ON</span> r.STUDENT_ID = st.STUDENT_ID
+            <span class="keyword">WHERE</span> r.SEMESTER = p_semester
+            <span class="keyword">ORDER BY</span> r.CGPA <span class="keyword">DESC</span>
+        )
+        <span class="keyword">LOOP</span>
+            DBMS_OUTPUT.PUT_LINE(
+                <span class="function">RPAD</span>(perf_rec.STUDENT_NAME, 16) || <span class="string">'| '</span> ||
+                <span class="function">LPAD</span>(perf_rec.TOTAL_MARKS, 11) || <span class="string">' | '</span> ||
+                <span class="function">LPAD</span>(perf_rec.CGPA, 4) || <span class="string">' | '</span> ||
+                perf_rec.RESULT_STATUS
+            );
+        <span class="keyword">END LOOP</span>;
+    <span class="keyword">END</span> display_class_performance;
+
+<span class="keyword">END</span> marksheet_pkg;
+/
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Test Mark Sheet System</div>
+                    
+                    <div class="code-block">
+<span class="keyword">BEGIN</span>
+    <span class="comment">-- Generate results for all students</span>
+    marksheet_pkg.generate_result(1, 4);
+    marksheet_pkg.generate_result(2, 4);
+    marksheet_pkg.generate_result(3, 4);
+    
+    DBMS_OUTPUT.PUT_LINE(CHR(10));
+    
+    <span class="comment">-- Display individual marksheet</span>
+    marksheet_pkg.display_marksheet(1, 4);
+    
+    DBMS_OUTPUT.PUT_LINE(CHR(10));
+    
+    <span class="comment">-- Display class performance</span>
+    marksheet_pkg.display_class_performance(4);
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Result generated - CGPA: 8.59 Status: PASS
+Result generated - CGPA: 8.88 Status: PASS
+Result generated - CGPA: 7.18 Status: PASS
+
+=========================================
+         MARKSHEET - SEMESTER 4
+=========================================
+Student: Arun Kumar | ID: 1
+Subject          | Marks | Grade | Credits
+-----------------------------------------
+Database Management| 85   | A     | 4
+PL/SQL           | 92   | A+    | 3
+Data Structures  | 78   | B     | 4
+Algorithms       | 88   | A     | 3
+=========================================
+CGPA: 8.59
+=========================================
+
+========== CLASS PERFORMANCE - SEMESTER 4 ==========
+Student         | Total Marks | CGPA | Status
+----------------------------------------------
+Deepa Singh     | 355         | 8.88 | PASS
+Arun Kumar      | 343         | 8.59 | PASS
+Kavya Sharma    | 285         | 7.18 | PASS
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- PROGRAM 10: PAYROLL -->
+            <div class="section">
+                <div class="section-title">Program 10: Payroll Processing System</div>
+                
+                <div class="aim">
+                    <strong>🎯 AIM:</strong> To design and develop a comprehensive payroll system with salary calculation, deductions, allowances, and payslip generation.
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Create Payroll Tables</div>
+                    
+                    <div class="code-block">
+<span class="comment">-- Create EMPLOYEES_PAYROLL table</span>
+<span class="keyword">CREATE TABLE</span> EMPLOYEES_PAYROLL (
+    EMP_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    EMP_NAME <span class="keyword">VARCHAR2</span>(50),
+    DESIGNATION <span class="keyword">VARCHAR2</span>(30),
+    DEPARTMENT <span class="keyword">VARCHAR2</span>(30),
+    BASIC_SALARY <span class="keyword">NUMBER</span>(10, 2),
+    BANK_ACCOUNT <span class="keyword">VARCHAR2</span>(20),
+    PAN <span class="keyword">VARCHAR2</span>(15)
+);
+
+<span class="comment">-- Create PAYROLL table</span>
+<span class="keyword">CREATE TABLE</span> PAYROLL (
+    PAYROLL_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    EMP_ID <span class="keyword">NUMBER</span>,
+    SALARY_MONTH <span class="keyword">VARCHAR2</span>(20),
+    BASIC_SALARY <span class="keyword">NUMBER</span>(10, 2),
+    HRA <span class="keyword">NUMBER</span>(10, 2),
+    DA <span class="keyword">NUMBER</span>(10, 2),
+    GROSS_SALARY <span class="keyword">NUMBER</span>(10, 2),
+    PF_DEDUCTION <span class="keyword">NUMBER</span>(10, 2),
+    IT_DEDUCTION <span class="keyword">NUMBER</span>(10, 2),
+    PROFESSIONAL_TAX <span class="keyword">NUMBER</span>(10, 2),
+    TOTAL_DEDUCTION <span class="keyword">NUMBER</span>(10, 2),
+    NET_SALARY <span class="keyword">NUMBER</span>(10, 2),
+    <span class="keyword">FOREIGN KEY</span> (EMP_ID) <span class="keyword">REFERENCES</span> EMPLOYEES_PAYROLL(EMP_ID)
+);
+
+<span class="comment">-- Create ATTENDANCE table</span>
+<span class="keyword">CREATE TABLE</span> ATTENDANCE (
+    ATTENDANCE_ID <span class="keyword">NUMBER</span> <span class="keyword">PRIMARY KEY</span>,
+    EMP_ID <span class="keyword">NUMBER</span>,
+    SALARY_MONTH <span class="keyword">VARCHAR2</span>(20),
+    TOTAL_DAYS <span class="keyword">NUMBER</span>,
+    PRESENT_DAYS <span class="keyword">NUMBER</span>,
+    ABSENT_DAYS <span class="keyword">NUMBER</span>,
+    <span class="keyword">FOREIGN KEY</span> (EMP_ID) <span class="keyword">REFERENCES</span> EMPLOYEES_PAYROLL(EMP_ID)
+);
+
+<span class="comment">-- Insert sample data</span>
+<span class="keyword">INSERT INTO</span> EMPLOYEES_PAYROLL 
+<span class="keyword">VALUES</span> (201, <span class="string">'Ramesh Gupta'</span>, <span class="string">'Senior Developer'</span>, <span class="string">'IT'</span>, 75000, <span class="string">'123456789'</span>, <span class="string">'AAAA1234A'</span>);
+<span class="keyword">INSERT INTO</span> EMPLOYEES_PAYROLL 
+<span class="keyword">VALUES</span> (202, <span class="string">'Anita Desai'</span>, <span class="string">'Manager'</span>, <span class="string">'HR'</span>, 65000, <span class="string">'987654321'</span>, <span class="string">'BBBB5678B'</span>);
+<span class="keyword">INSERT INTO</span> EMPLOYEES_PAYROLL 
+<span class="keyword">VALUES</span> (203, <span class="string">'Rohit Patel'</span>, <span class="string">'Developer'</span>, <span class="string">'IT'</span>, 55000, <span class="string">'456789123'</span>, <span class="string">'CCCC9999C'</span>);
+
+<span class="keyword">INSERT INTO</span> ATTENDANCE 
+<span class="keyword">VALUES</span> (1, 201, <span class="string">'September 2024'</span>, 22, 21, 1);
+<span class="keyword">INSERT INTO</span> ATTENDANCE 
+<span class="keyword">VALUES</span> (2, 202, <span class="string">'September 2024'</span>, 22, 22, 0);
+<span class="keyword">INSERT INTO</span> ATTENDANCE 
+<span class="keyword">VALUES</span> (3, 203, <span class="string">'September 2024'</span>, 22, 20, 2);
+
+<span class="keyword">COMMIT</span>;
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Create Payroll Package</div>
+                    
+                    <div class="code-block">
+<span class="keyword">CREATE OR REPLACE PACKAGE</span> payroll_pkg <span class="keyword">AS</span>
+    <span class="keyword">PROCEDURE</span> calculate_salary (
+        p_emp_id <span class="keyword">IN</span> NUMBER,
+        p_salary_month <span class="keyword">IN</span> VARCHAR2
+    );
+    
+    <span class="keyword">FUNCTION</span> calculate_hra (p_basic <span class="keyword">IN</span> NUMBER) <span class="keyword">RETURN</span> NUMBER;
+    <span class="keyword">FUNCTION</span> calculate_da (p_basic <span class="keyword">IN</span> NUMBER) <span class="keyword">RETURN</span> NUMBER;
+    <span class="keyword">FUNCTION</span> calculate_pf (p_basic <span class="keyword">IN</span> NUMBER) <span class="keyword">RETURN</span> NUMBER;
+    <span class="keyword">FUNCTION</span> calculate_it (p_gross <span class="keyword">IN</span> NUMBER) <span class="keyword">RETURN</span> NUMBER;
+    
+    <span class="keyword">PROCEDURE</span> generate_payslip (
+        p_emp_id <span class="keyword">IN</span> NUMBER,
+        p_salary_month <span class="keyword">IN</span> VARCHAR2
+    );
+    
+    <span class="keyword">PROCEDURE</span> display_payroll_report (
+        p_salary_month <span class="keyword">IN</span> VARCHAR2
+    );
+
+<span class="keyword">END</span> payroll_pkg;
+/
+
+<span class="keyword">CREATE OR REPLACE PACKAGE BODY</span> payroll_pkg <span class="keyword">AS</span>
+    
+    <span class="keyword">FUNCTION</span> calculate_hra (p_basic <span class="keyword">IN</span> NUMBER) <span class="keyword">RETURN</span> NUMBER <span class="keyword">AS</span>
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">RETURN</span> p_basic * 0.20; <span class="comment">-- 20% of basic</span>
+    <span class="keyword">END</span> calculate_hra;
+    
+    <span class="keyword">FUNCTION</span> calculate_da (p_basic <span class="keyword">IN</span> NUMBER) <span class="keyword">RETURN</span> NUMBER <span class="keyword">AS</span>
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">RETURN</span> p_basic * 0.12; <span class="comment">-- 12% of basic</span>
+    <span class="keyword">END</span> calculate_da;
+    
+    <span class="keyword">FUNCTION</span> calculate_pf (p_basic <span class="keyword">IN</span> NUMBER) <span class="keyword">RETURN</span> NUMBER <span class="keyword">AS</span>
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">RETURN</span> p_basic * 0.12; <span class="comment">-- 12% PF deduction</span>
+    <span class="keyword">END</span> calculate_pf;
+    
+    <span class="keyword">FUNCTION</span> calculate_it (p_gross <span class="keyword">IN</span> NUMBER) <span class="keyword">RETURN</span> NUMBER <span class="keyword">AS</span>
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">IF</span> p_gross > 100000 <span class="keyword">THEN</span>
+            <span class="keyword">RETURN</span> p_gross * 0.10; <span class="comment">-- 10% IT for gross > 100000</span>
+        <span class="keyword">ELSIF</span> p_gross > 50000 <span class="keyword">THEN</span>
+            <span class="keyword">RETURN</span> p_gross * 0.05; <span class="comment">-- 5% IT for gross > 50000</span>
+        <span class="keyword">ELSE</span>
+            <span class="keyword">RETURN</span> 0;
+        <span class="keyword">END IF</span>;
+    <span class="keyword">END</span> calculate_it;
+    
+    <span class="keyword">PROCEDURE</span> calculate_salary (
+        p_emp_id <span class="keyword">IN</span> NUMBER,
+        p_salary_month <span class="keyword">IN</span> VARCHAR2
+    ) <span class="keyword">AS</span>
+        v_basic NUMBER;
+        v_hra NUMBER;
+        v_da NUMBER;
+        v_gross NUMBER;
+        v_pf NUMBER;
+        v_it NUMBER;
+        v_pt NUMBER := 200; <span class="comment">-- Professional Tax</span>
+        v_total_ded NUMBER;
+        v_net NUMBER;
+        v_payroll_id NUMBER;
+    <span class="keyword">BEGIN</span>
+        <span class="comment">-- Get basic salary</span>
+        <span class="keyword">SELECT</span> BASIC_SALARY <span class="keyword">INTO</span> v_basic
+        <span class="keyword">FROM</span> EMPLOYEES_PAYROLL
+        <span class="keyword">WHERE</span> EMP_ID = p_emp_id;
+        
+        <span class="comment">-- Calculate allowances and deductions</span>
+        v_hra := calculate_hra(v_basic);
+        v_da := calculate_da(v_basic);
+        v_gross := v_basic + v_hra + v_da;
+        v_pf := calculate_pf(v_basic);
+        v_it := calculate_it(v_gross);
+        v_total_ded := v_pf + v_it + v_pt;
+        v_net := v_gross - v_total_ded;
+        
+        <span class="comment">-- Get new payroll ID</span>
+        <span class="keyword">SELECT</span> NVL(<span class="function">MAX</span>(PAYROLL_ID), 1000) + 1
+        <span class="keyword">INTO</span> v_payroll_id <span class="keyword">FROM</span> PAYROLL;
+        
+        <span class="comment">-- Insert payroll record</span>
+        <span class="keyword">INSERT INTO</span> PAYROLL
+        (PAYROLL_ID, EMP_ID, SALARY_MONTH, BASIC_SALARY, HRA, DA, GROSS_SALARY,
+         PF_DEDUCTION, IT_DEDUCTION, PROFESSIONAL_TAX, TOTAL_DEDUCTION, NET_SALARY)
+        <span class="keyword">VALUES</span>
+        (v_payroll_id, p_emp_id, p_salary_month, v_basic, v_hra, v_da, v_gross,
+         v_pf, v_it, v_pt, v_total_ded, v_net);
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Salary calculated for Employee ID: '</span> || p_emp_id);
+        <span class="keyword">COMMIT</span>;
+    <span class="keyword">EXCEPTION</span>
+        <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'Error: '</span> || SQLERRM);
+    <span class="keyword">END</span> calculate_salary;
+    
+    <span class="keyword">PROCEDURE</span> generate_payslip (
+        p_emp_id <span class="keyword">IN</span> NUMBER,
+        p_salary_month <span class="keyword">IN</span> VARCHAR2
+    ) <span class="keyword">AS</span>
+        v_emp_name VARCHAR2(50);
+        v_designation VARCHAR2(30);
+        v_pan VARCHAR2(15);
+        v_bank_account VARCHAR2(20);
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SELECT</span> EMP_NAME, DESIGNATION, PAN, BANK_ACCOUNT
+        <span class="keyword">INTO</span> v_emp_name, v_designation, v_pan, v_bank_account
+        <span class="keyword">FROM</span> EMPLOYEES_PAYROLL
+        <span class="keyword">WHERE</span> EMP_ID = p_emp_id;
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'========================================'</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'             PAYSLIP'</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'========================================'</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Month: '</span> || p_salary_month);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Employee: '</span> || v_emp_name || <span class="string">' | ID: '</span> || p_emp_id);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Designation: '</span> || v_designation);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'PAN: '</span> || v_pan || <span class="string">' | Bank: '</span> || v_bank_account);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'--------EARNINGS--------'</span>);
+        
+        <span class="keyword">FOR</span> pay_rec <span class="keyword">IN</span> (
+            <span class="keyword">SELECT</span> BASIC_SALARY, HRA, DA, GROSS_SALARY
+            <span class="keyword">FROM</span> PAYROLL
+            <span class="keyword">WHERE</span> EMP_ID = p_emp_id <span class="keyword">AND</span> SALARY_MONTH = p_salary_month
+        )
+        <span class="keyword">LOOP</span>
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'Basic Salary: Rs.'</span> || pay_rec.BASIC_SALARY);
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'HRA (20%): Rs.'</span> || <span class="function">ROUND</span>(pay_rec.HRA, 2));
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'DA (12%): Rs.'</span> || <span class="function">ROUND</span>(pay_rec.DA, 2));
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'Gross Salary: Rs.'</span> || <span class="function">ROUND</span>(pay_rec.GROSS_SALARY, 2));
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'--------DEDUCTIONS--------'</span>);
+        <span class="keyword">END LOOP</span>;
+        
+        <span class="keyword">FOR</span> ded_rec <span class="keyword">IN</span> (
+            <span class="keyword">SELECT</span> PF_DEDUCTION, IT_DEDUCTION, PROFESSIONAL_TAX, TOTAL_DEDUCTION, NET_SALARY
+            <span class="keyword">FROM</span> PAYROLL
+            <span class="keyword">WHERE</span> EMP_ID = p_emp_id <span class="keyword">AND</span> SALARY_MONTH = p_salary_month
+        )
+        <span class="keyword">LOOP</span>
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'PF (12%): Rs.'</span> || <span class="function">ROUND</span>(ded_rec.PF_DEDUCTION, 2));
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'Income Tax: Rs.'</span> || <span class="function">ROUND</span>(ded_rec.IT_DEDUCTION, 2));
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'Professional Tax: Rs.'</span> || ded_rec.PROFESSIONAL_TAX);
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'Total Deduction: Rs.'</span> || <span class="function">ROUND</span>(ded_rec.TOTAL_DEDUCTION, 2));
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'========== NET SALARY =========='</span>);
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'Rs.'</span> || <span class="function">ROUND</span>(ded_rec.NET_SALARY, 2));
+            DBMS_OUTPUT.PUT_LINE(<span class="string">'========================================'</span>);
+        <span class="keyword">END LOOP</span>;
+    <span class="keyword">END</span> generate_payslip;
+    
+    <span class="keyword">PROCEDURE</span> display_payroll_report (
+        p_salary_month <span class="keyword">IN</span> VARCHAR2
+    ) <span class="keyword">AS</span>
+    <span class="keyword">BEGIN</span>
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'============ PAYROLL REPORT - '</span> || p_salary_month || <span class="string">' ============'</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Employee       | Gross      | Deduction  | Net Salary'</span>);
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'----------------------------------------------------'</span>);
+        
+        <span class="keyword">FOR</span> report_rec <span class="keyword">IN</span> (
+            <span class="keyword">SELECT</span> e.EMP_NAME, p.GROSS_SALARY, p.TOTAL_DEDUCTION, p.NET_SALARY
+            <span class="keyword">FROM</span> PAYROLL p
+            <span class="keyword">JOIN</span> EMPLOYEES_PAYROLL e <span class="keyword">ON</span> p.EMP_ID = e.EMP_ID
+            <span class="keyword">WHERE</span> p.SALARY_MONTH = p_salary_month
+            <span class="keyword">ORDER BY</span> e.EMP_NAME
+        )
+        <span class="keyword">LOOP</span>
+            DBMS_OUTPUT.PUT_LINE(
+                <span class="function">RPAD</span>(report_rec.EMP_NAME, 15) || <span class="string">'| '</span> ||
+                <span class="function">LPAD</span>(<span class="function">ROUND</span>(report_rec.GROSS_SALARY, 2), 10) || <span class="string">' | '</span> ||
+                <span class="function">LPAD</span>(<span class="function">ROUND</span>(report_rec.TOTAL_DEDUCTION, 2), 10) || <span class="string">' | '</span> ||
+                <span class="function">LPAD</span>(<span class="function">ROUND</span>(report_rec.NET_SALARY, 2), 11)
+            );
+        <span class="keyword">END LOOP</span>;
+        
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'======================================================'</span>);
+        
+        <span class="keyword">FOR</span> total_rec <span class="keyword">IN</span> (
+            <span class="keyword">SELECT</span> <span class="function">SUM</span>(GROSS_SALARY) total_gross,
+                   <span class="function">SUM</span>(TOTAL_DEDUCTION) total_ded,
+                   <span class="function">SUM</span>(NET_SALARY) total_net
+            <span class="keyword">FROM</span> PAYROLL
+            <span class="keyword">WHERE</span> SALARY_MONTH = p_salary_month
+        )
+        <span class="keyword">LOOP</span>
+            DBMS_OUTPUT.PUT_LINE(
+                <span class="string">'TOTAL          | '</span> ||
+                <span class="function">LPAD</span>(<span class="function">ROUND</span>(total_rec.total_gross, 2), 10) || <span class="string">' | '</span> ||
+                <span class="function">LPAD</span>(<span class="function">ROUND</span>(total_rec.total_ded, 2), 10) || <span class="string">' | '</span> ||
+                <span class="function">LPAD</span>(<span class="function">ROUND</span>(total_rec.total_net, 2), 11)
+            );
+        <span class="keyword">END LOOP</span>;
+    <span class="keyword">END</span> display_payroll_report;
+
+<span class="keyword">END</span> payroll_pkg;
+/
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Test Payroll System</div>
+                    
+                    <div class="code-block">
+<span class="keyword">BEGIN</span>
+    <span class="comment">-- Calculate salary for all employees</span>
+    payroll_pkg.calculate_salary(201, <span class="string">'September 2024'</span>);
+    payroll_pkg.calculate_salary(202, <span class="string">'September 2024'</span>);
+    payroll_pkg.calculate_salary(203, <span class="string">'September 2024'</span>);
+    
+    DBMS_OUTPUT.PUT_LINE(CHR(10) || CHR(10));
+    
+    <span class="comment">-- Generate payslip for employee 201</span>
+    payroll_pkg.generate_payslip(201, <span class="string">'September 2024'</span>);
+    
+    DBMS_OUTPUT.PUT_LINE(CHR(10));
+    
+    <span class="comment">-- Display payroll report</span>
+    payroll_pkg.display_payroll_report(<span class="string">'September 2024'</span>);
+    
+<span class="keyword">END</span>;
+/
+                    </div>
+                    
+                    <div class="output-block">
+<strong>Output:</strong>
+Salary calculated for Employee ID: 201
+Salary calculated for Employee ID: 202
+Salary calculated for Employee ID: 203
+
+========================================
+             PAYSLIP
+========================================
+Month: September 2024
+Employee: Ramesh Gupta | ID: 201
+Designation: Senior Developer
+PAN: AAAA1234A | Bank: 123456789
+--------EARNINGS--------
+Basic Salary: Rs.75000
+HRA (20%): Rs.15000
+DA (12%): Rs.9000
+Gross Salary: Rs.99000
+--------DEDUCTIONS--------
+PF (12%): Rs.9000
+Income Tax: Rs.4950
+Professional Tax: Rs.200
+Total Deduction: Rs.14150
+========== NET SALARY ==========
+Rs.84850
+========================================
+
+============ PAYROLL REPORT - September 2024 ============
+Employee       | Gross      | Deduction  | Net Salary
+----------------------------------------------------
+Ramesh Gupta   |   99000    |  14150     |  84850
+Anita Desai    |   93200    |  12920     |  80280
+Rohit Patel    |   75800    |  9585      |  66215
+======================================================
+TOTAL          |  268000    |  36655     |  231345
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- SUMMARY TABLE -->
+            <div class="section">
+                <div class="section-title">📊 Summary Table - All Programs</div>
+                
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th>Program</th>
+                            <th>Title</th>
+                            <th>Key Concepts</th>
+                            <th>Main Tables/Objects</th>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>SQL Queries</td>
+                            <td>SELECT, WHERE, JOIN, Subqueries, Aggregate Functions, GROUP BY</td>
+                            <td>EMPLOYEES, PROJECTS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4</strong></td>
+                            <td>Exception Handling</td>
+                            <td>Predefined Exceptions, User-defined Exceptions, RAISE, PRAGMA</td>
+                            <td>EMPLOYEES (with exception demos)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5</strong></td>
+                            <td>Cursors</td>
+                            <td>Explicit Cursors, FOR Loop, Cursor Attributes, Parameterized Cursors</td>
+                            <td>EMPLOYEES</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6</strong></td>
+                            <td>Triggers</td>
+                            <td>BEFORE/AFTER INSERT/UPDATE/DELETE, Business Rule Enforcement</td>
+                            <td>EMPLOYEES, PROJECTS, SALARY_LOG</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7</strong></td>
+                            <td>Packages</td>
+                            <td>Package Specification, Package Body, Reusable Functions & Procedures</td>
+                            <td>EMPLOYEES (via emp_mgmt_pkg)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8</strong></td>
+                            <td>Library Management</td>
+                            <td>Complete Application, Issue/Return Books, Fine Calculation</td>
+                            <td>MEMBERS, BOOKS, ISSUE_RETURN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9</strong></td>
+                            <td>Student Mark Sheet</td>
+                            <td>Result Generation, CGPA Calculation, Grade Assignment</td>
+                            <td>STUDENTS, SUBJECTS, MARKS, RESULT</td>
+                        </tr>
+                        <tr>
+                            <td><strong>10</strong></td>
+                            <td>Payroll Processing</td>
+                            <td>Salary Calculation, Deductions, Allowances, Payslip Generation</td>
+                            <td>EMPLOYEES_PAYROLL, PAYROLL, ATTENDANCE</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- ADDITIONAL NOTES -->
+            <div class="section">
+                <div class="section-title">⚠️ Important Notes & Troubleshooting</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">SQL Developer Tips</div>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Enable Output:</strong> Press <span class="highlight">Ctrl+Shift+O</span> or go to View → Dbms Output to see DBMS_OUTPUT messages</li>
+                        <li><strong>Execute Script:</strong> Press <span class="highlight">F5</span> or click Execute Script button to run the entire script</li>
+                        <li><strong>Execute Single Statement:</strong> Press <span class="highlight">Ctrl+Enter</span> to run one statement</li>
+                        <li><strong>Commit Changes:</strong> Always use <span class="keyword">COMMIT</span> to save changes (unless using ROLLBACK for testing)</li>
+                        <li><strong>Clear Output:</strong> Use Clear Output button to clean the output pane</li>
+                        <li><strong>Format Code:</strong> Press <span class="highlight">Ctrl+Shift+F</span> to auto-format SQL code</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Common Errors & Solutions</div>
+                    
+                    <div class="error">
+                        <strong>❌ ORA-00001: unique constraint violated</strong><br>
+                        <em>Solution:</em> You're trying to insert a duplicate primary key. Check existing data or use different ID.
+                    </div>
+                    
+                    <div class="error">
+                        <strong>❌ ORA-01403: no data found</strong><br>
+                        <em>Solution:</em> SELECT INTO query returned no rows. Add exception handling or verify data exists.
+                    </div>
+                    
+                    <div class="error">
+                        <strong>❌ ORA-01422: exact fetch returns more than requested number of rows</strong><br>
+                        <em>Solution:</em> SELECT INTO returned multiple rows. Use cursor or LIMIT to fetch one row.
+                    </div>
+                    
+                    <div class="error">
+                        <strong>❌ ORA-00942: table or view does not exist</strong><br>
+                        <em>Solution:</em> Table not created or wrong table name. Create table before using it.
+                    </div>
+                    
+                    <div class="error">
+                        <strong>❌ PL/SQL: compilation error</strong><br>
+                        <em>Solution:</em> Check syntax errors. Look at error line number and verify brackets, semicolons, keywords.
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Best Practices</div>
+                    
+                    <div class="note">
+                        <strong>✓ Use %TYPE and %ROWTYPE</strong><br>
+                        For variable declarations, use table column types to ensure compatibility:
+                        <div class="code-block">v_emp_id EMPLOYEES.EMP_ID%<span class="keyword">TYPE</span>;</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>✓ Always include Exception Handling</strong><br>
+                        Wrap code in BEGIN-EXCEPTION-END blocks to handle errors gracefully.
+                    </div>
+                    
+                    <div class="note">
+                        <strong>✓ Use Comments</strong><br>
+                        Use <span class="highlight">-- </span> for single-line and <span class="highlight">/* */</span> for multi-line comments to document code.
+                    </div>
+                    
+                    <div class="note">
+                        <strong>✓ Commit Regularly</strong><br>
+                        Use COMMIT after successful DML operations to save changes permanently.
+                    </div>
+                    
+                    <div class="note">
+                        <strong>✓ Use Meaningful Names</strong><br>
+                        Name variables, procedures, and functions clearly: <span class="highlight">v_</span> for variables, <span class="highlight">p_</span> for parameters.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <footer>
+            <p>PL/SQL Practical Guide v1.0 | B.Sc. Computer Science with AI | © 2024</p>
+            <p>For SQL Developer Support: <strong>https://www.oracle.com/tools/sql-developer/</strong></p>
+            <p>Last Updated: September 2024</p>
+        </footer>
+    </div>
+</body>
+</html>
